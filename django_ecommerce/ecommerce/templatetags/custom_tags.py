@@ -1,5 +1,6 @@
 from django import template
 from django.utils.html import mark_safe
+from ecommerce.models import Product
 
 
 register = template.Library()
@@ -23,3 +24,30 @@ def breadcrumbs(url_path):
                         </div>"""
     return mark_safe(breadcrumbs_html)
 
+
+@register.simple_tag
+def new_arrivals():
+    new_arrivals_list = Product.objects.all().order_by('-created_at')[:7]
+    new_arrivals_html = ''
+    for product in new_arrivals_list:
+        new_arrivals_html += f"""
+        <div class="item">
+            <div class="product-block ">
+                <div class="image"><a href="{product.get_absolute_url()}"><img class="img-responsive" title="{product.title}" alt="{product.title}" src="{product.image.url}"></a> </div>
+                <div class="product-details" >
+                    <div class="product-name">
+                        <h3><a href="{product.get_absolute_url()}">{product.title}</a></h3>
+                    </div>
+                    <div class="price"><span class="price-new">{product.price}</span></div>
+                    <div class="product-hov">
+                        <ul>
+                            <li class="wish"><a href="#"></a></li>
+                            <li class="addtocart"><a href="#"> Add to Cart </a></li>
+                            <li class="compare"><a href="#"></a></li>
+                        </ul>
+                    <div class="review"><span class="rate"><i class="fa fa-star rated"></i><i class="fa fa-star rated"></i><i class="fa fa-star rated"></i><i class="fa fa-star rated"></i><i class="fa fa-star"></i></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>"""
+    return mark_safe(new_arrivals_html)

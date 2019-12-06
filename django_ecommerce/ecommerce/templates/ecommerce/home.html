@@ -1,4 +1,5 @@
 {% extends 'ecommerce/base.html' %}
+{% load custom_tags %}
 {% block content %}
   <!-- Main Banner Start-->
   <div id="banner">
@@ -48,7 +49,7 @@
                   <div class="image"> <a href="#"><img class="img-responsive" title="jeans" alt="jeans" src="{{ MEDIA_URL }}images/product/pro3.png"></a> </div>
                   <div class="product-details">
                     <div class="product-name">
-                      <h3><a href="#">Smart TV </a></h3>
+                      <h3><a href="#">Smart TV</a></h3>
                     </div>
                   </div>
                 </div>
@@ -88,7 +89,7 @@
                   <div class="image"> <a href="#"><img class="img-responsive" title="pursh" alt="pursh" src="{{ MEDIA_URL }}images/product/pro7.png"></a> </div>
                   <div class="product-details">
                     <div class="product-name">
-                      <h3><a href="#">Fashion </a></h3>
+                      <h3><a href="#">Fashion</a></h3>
                     </div>
                   </div>
                 </div>
@@ -98,7 +99,7 @@
                   <div class="image"> <a href="#"><img class="img-responsive" title="sandle" alt="sandal" src="{{ MEDIA_URL }}images/product/pro4.png"></a> </div>
                   <div class="product-details">
                     <div class="product-name">
-                      <h3><a href="#">Cellphones </a></h3>
+                      <h3><a href="#">Cellphones</a></h3>
                     </div>
                   </div>
                 </div>
@@ -150,125 +151,12 @@
       <div class="row">
         <div class="col-md-12 featured">
           <div class="Featured-Products-title">
-            <h2 class="tf">Trending Now!<span> Get Our Best Prices </span></h2>
+            <h2 class="tf">New Arrivals!<span> Check it out </span></h2>
           </div>
           <div class= "customNavigation"> <a class="btn featured_prev prev"><i class="fa fa-angle-left"></i></a> <a class="btn featured_next next"><i class="fa fa-angle-right"></i></a> </div>
           <div class="box">
             <div id="featured-products" class="owl-carousel">
-              <div class="item">
-                <div class="product-block ">
-                  <div class="image"> <a href="product-detail-view.html"><img class="img-responsive" title="T-shirt" alt="T-shirt" src="{{ MEDIA_URL }}images/product/feature-pro-2.jpg"></a> </div>
-                  <div class="product-details">
-                    <div class="product-name">
-                      <h3><a href="product-detail-view.html">Black African Print Pencil Skirt </a></h3>
-                    </div>
-                    <div class="price"> <span class="price-old">$123.20</span> <span class="price-new">$14.99</span> </div>
-                    <div class="product-hov">
-                      <ul>
-                        <li class="wish"><a href="#" ></a></li>
-                        <li class="addtocart"><a href="#" >Add to Cart</a> </li>
-                        <li class="compare"><a href="#" ></a></li>
-                      </ul>
-                      <div class="review"> <span class="rate"> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star"></i> </span> </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="product-block ">
-                  <div class="image"> <a href="product-detail-view.html"><img class="img-responsive" title="T-shirt" alt="T-shirt" src="{{ MEDIA_URL }}images/product/feature-pro-3.jpg"></a> </div>
-                  <div class="product-details">
-                    <div class="product-name">
-                      <h3><a href="product-detail-view.html">Black African Print Pencil Skirt </a></h3>
-                    </div>
-                    <div class="price"> <span class="price-old">$123.20</span> <span class="price-new">$14.99</span> </div>
-                    <div class="product-hov">
-                      <ul>
-                        <li class="wish"><a href="#" ></a></li>
-                        <li class="addtocart"><a href="#" >Add to Cart</a> </li>
-                        <li class="compare"><a href="#" ></a></li>
-                      </ul>
-                      <div class="review"> <span class="rate"> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star"></i> </span> </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="product-block ">
-                  <div class="image"> <a href="product-detail-view.html"><img class="img-responsive" title="T-shirt" alt="T-shirt" src="{{ MEDIA_URL }}images/product/feature-pro-4.jpg"></a> </div>
-                  <div class="product-details">
-                    <div class="product-name">
-                      <h3><a href="product-detail-view.html">Black African Print Pencil Skirt </a></h3>
-                    </div>
-                    <div class="price"> <span class="price-old">$123.20</span> <span class="price-new">$14.99</span> </div>
-                    <div class="product-hov">
-                      <ul>
-                        <li class="wish"><a href="#" ></a></li>
-                        <li class="addtocart"><a href="#" >Add to Cart</a> </li>
-                        <li class="compare"><a href="#" ></a></li>
-                      </ul>
-                      <div class="review"> <span class="rate"> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star"></i> </span> </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="product-block ">
-                  <div class="image"> <a href="product-detail-view.html"><img class="img-responsive" title="T-shirt" alt="T-shirt" src="{{ MEDIA_URL }}images/product/2prod281x366.jpg"></a> </div>
-                  <div class="product-details">
-                    <div class="product-name">
-                      <h3><a href="product-detail-view.html">Black African Print Pencil Skirt </a></h3>
-                    </div>
-                    <div class="price"> <span class="price-old">$123.20</span> <span class="price-new">$14.99</span> </div>
-                    <div class="product-hov">
-                      <ul>
-                        <li class="wish"><a href="#" ></a></li>
-                        <li class="addtocart"><a href="#" >Add to Cart</a> </li>
-                        <li class="compare"><a href="#" ></a></li>
-                      </ul>
-                      <div class="review"> <span class="rate"> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star"></i> </span> </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="product-block ">
-                  <div class="image"> <a href="product-detail-view.html"><img class="img-responsive" title="T-shirt" alt="T-shirt" src="{{ MEDIA_URL }}images/product/feature-pro-3.jpg"></a> </div>
-                  <div class="product-details">
-                    <div class="product-name">
-                      <h3><a href="product-detail-view.html">Black African Print Pencil Skirt </a></h3>
-                    </div>
-                    <div class="price"> <span class="price-old">$123.20</span> <span class="price-new">$14.99</span> </div>
-                    <div class="product-hov">
-                      <ul>
-                        <li class="wish"><a href="#" ></a></li>
-                        <li class="addtocart"><a href="#" >Add to Cart</a> </li>
-                        <li class="compare"><a href="#" ></a></li>
-                      </ul>
-                      <div class="review"> <span class="rate"> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star"></i> </span> </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="product-block ">
-                  <div class="image"> <a href="product-detail-view.html"><img class="img-responsive" title="T-shirt" alt="T-shirt" src="{{ MEDIA_URL }}images/product/feature-pro-2.jpg"></a> </div>
-                  <div class="product-details">
-                    <div class="product-name">
-                      <h3><a href="product-detail-view.html">Black African Print Pencil Skirt </a></h3>
-                    </div>
-                    <div class="price"> <span class="price-old">$123.20</span> <span class="price-new">$14.99</span> </div>
-                    <div class="product-hov">
-                      <ul>
-                        <li class="wish"><a href="#" ></a></li>
-                        <li class="addtocart"><a href="#" >Add to Cart</a> </li>
-                        <li class="compare"><a href="#" ></a></li>
-                      </ul>
-                      <div class="review"> <span class="rate"> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star"></i> </span> </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {% new_arrivals %}
             </div>
           </div>
         </div>

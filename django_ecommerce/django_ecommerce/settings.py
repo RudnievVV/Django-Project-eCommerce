@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'cart.apps.CartConfig',
+    'djmoney',
     'crispy_forms',
     'ecommerce.apps.EcommerceConfig',
     'django.contrib.admin',
@@ -128,3 +130,5 @@ MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'ecommerce-home'
+
+CART_SESSION_ID = 'cart'
