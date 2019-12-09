@@ -12,11 +12,14 @@
   <link rel="icon" type="image/png" href="{% static 'ecommerce/favicon.ico' %}">
   <link rel="apple-touch-icon" href="{% static 'ecommerce/favicon.ico' %}">
   <link rel="stylesheet" href="{% static 'ecommerce/css/DioProgress.css' %}" type="text/css">
+  <link href="{% static 'ecommerce/css/jquery-ui.css' %}" rel="stylesheet">
   <link href="{% static 'ecommerce/Bootstrap/css/bootstrap.css' %}" rel="stylesheet">
   <link href="{% static 'ecommerce/css/style.css' %}" rel="stylesheet" type="text/css">
   <link href="{% static 'ecommerce/css/font-awesome.css' %}" rel="stylesheet" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Poppins:300,500,600,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Poppins:400,500,600,300,700' rel='stylesheet' type='text/css'>
   <link href="{% static 'ecommerce/css/owl.carousel.css' %}" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="{% static 'ecommerce/css/smoothproducts.css' %}">
   <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="{% static 'ecommerce/js/DioProgress.js' %}"></script>
 </head>
@@ -144,7 +147,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-3 header-left">
-            <div class="logo"> <a href="{% url 'ecommerce-home' %}"><img src="{{ MEDIA_URL }}images/logo.png" alt="#"></a> </div>
+            <div class="logo"> <a href="{% url 'ecommerce-home' %}"><img src="{{ MEDIA_URL }}images/python-3.svg" alt="#"></a> </div>
           </div>
           <div class="col-md-6 search_block">
             <div class="search">
@@ -282,7 +285,7 @@
               <h2 class="tf">Be The First To Hear Our Exciting News</h2>
               <p>This ante posuere ac Mauris non turpis eu metus congue sagittis Fusce at.</p>
               <div class="input-group">
-                <input class=" form-control" type="text" placeholder="Email Here......">
+                <input class=" form-control" type="text" placeholder="Email Here...">
                 <button type="submit" value="Sign up" class="btn btn-large btn-primary">Sign up</button>
               </div>
             </form>
@@ -392,6 +395,7 @@
 <script src="{% static 'ecommerce/Bootstrap/js/bootstrap.js' %}"></script>
 <script src="{% static 'ecommerce/js/owl.carousel.min.js' %}"></script>
 <script src="{% static 'ecommerce/js/globle.js' %}"></script>
-<script type="text/javascript" src="{% static 'ecommetce/js/smoothproducts.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'ecommerce/js/smoothproducts.min.js' %}"></script>
+<script src="{% static 'ecommerce/js/jquery-ui.js' %}"></script>
 </body>
 </html>

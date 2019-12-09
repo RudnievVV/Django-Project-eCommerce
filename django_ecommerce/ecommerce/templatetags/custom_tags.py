@@ -11,7 +11,7 @@ def breadcrumbs(url_path):
     breadcrumbs_html = """<div class="col-md-9">
                               <div class="bread-crumb">
                                 <ul>
-                                  <li><a href="#">home</a></li>"""
+                                  <li><a href="/">home</a></li>"""
 
     url_path = url_path.split('/')
     for breadcrumb in range(len(url_path) - 1):
@@ -27,7 +27,7 @@ def breadcrumbs(url_path):
 
 @register.simple_tag
 def new_arrivals():
-    new_arrivals_list = Product.objects.all().order_by('-created_at')[:7]
+    new_arrivals_list = Product.objects.filter(available=True).order_by('-created_at')[:7]
     new_arrivals_html = ''
     for product in new_arrivals_list:
         new_arrivals_html += f"""

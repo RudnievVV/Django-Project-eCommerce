@@ -880,9 +880,10 @@ footer {
 	background-color: #d9121f;
 }
 .footer-logo {
-	background: url(../footer-logo.png) no-repeat;
-	height: 39px;
+	background: url(../python-3.svg) no-repeat;
+	height: 68px;
 	margin-bottom: 20px;
+	background-size: 100%;
 }
 .about > p {
 	margin: 0 50px 0 0;
