@@ -46,12 +46,11 @@
                   <h4> Categories</h4>
                 </div>
                 <ul class="title-toggle">
-                  <li><a href="grid-view.html">Clothing</a></li>
-                  <li><a href="grid-view.html">Shoes</a></li>
-                  <li><a href="grid-view.html">Jewellery</a></li>
-                  <li><a href="grid-view.html">Home & Furniture</a></li>
-                  <li><a href="grid-view.html">Bags</a></li>
-                  <li><a href="grid-view.html">Accessories</a></li>
+                  {% for category in categories %}
+                    <li><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></li>
+                  {% empty %}
+                    <li>No categories</li>
+                  {% endfor %}
                 </ul>
               </div>
               <div class="sidebar-widget Shop-by-block">
@@ -390,5 +389,5 @@
 	      $(window).load( function() {
         $('.sp-wrap').smoothproducts();
     });
-     </script>
+</script>
 {% endblock content %}

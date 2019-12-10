@@ -18,11 +18,12 @@ def product_list(request, category_slug=None):
         category = get_object_or_404(Category, slug=category_slug)
         products = Product.objects.filter(category=category)
 
-    context = {'category': category, 'categories': categories, 'products': products}
+    context = {'category': category, 'categories': categories, 'products': products, 'title': category.title}
     return render(request, 'ecommerce/product_list.html', context)
 
 
 def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
-    context = {'product': product}
+    categories = Category.objects.all()
+    context = {'product': product, 'categories': categories}
     return render(request, 'ecommerce/product_detail.html', context)

@@ -1,6 +1,6 @@
 from django import template
 from django.utils.html import mark_safe
-from ecommerce.models import Product
+from ecommerce.models import Product, Category
 
 
 register = template.Library()
@@ -51,3 +51,13 @@ def new_arrivals():
             </div>
         </div>"""
     return mark_safe(new_arrivals_html)
+
+
+@register.simple_tag
+def all_categories():
+    all_categories_list = Category.objects.all()
+    all_categories_html = ''
+    for category in all_categories_list:
+        all_categories_html += f"<option class='computer'>{category.title}</option>"
+
+    return mark_safe(all_categories_html)

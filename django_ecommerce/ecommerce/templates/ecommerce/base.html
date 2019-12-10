@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -155,11 +156,7 @@
                 <div class="search_cat">
                   <select class="search-category" name="search-category">
                     <option class="computer" selected>All Categories</option>
-                    <option class="computer">Men</option>
-                    <option class="computer">Women</option>
-                    <option class="computer">Kids</option>
-                    <option class="computer">Computer</option>
-                    <option class="computer">Electronics</option>
+                    {% all_categories %}
                   </select>
                   <span class="fa fa-angle-down"></span> </div>
                 <input type="text" placeholder="Search...">

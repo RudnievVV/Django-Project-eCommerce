@@ -47,12 +47,11 @@
                   <h4> Categories</h4>
                 </div>
                 <ul class="title-toggle">
-                  <li><a href="grid-view.html">Clothing</a></li>
-                  <li><a href="grid-view.html">Shoes</a></li>
-                  <li><a href="grid-view.html">Jewellery</a></li>
-                  <li><a href="grid-view.html">Home & Furniture</a></li>
-                  <li><a href="grid-view.html">Bags</a></li>
-                  <li><a href="grid-view.html">Accessories</a></li>
+                  {% for category in categories %}
+                    <li><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></li>
+                  {% empty %}
+                    <li>No categories</li>
+                  {% endfor %}
                 </ul>
               </div>
               <div class="sidebar-widget Price-range">
@@ -95,7 +94,7 @@
                 </ul>
               </div>
               <div class="sidebar-widget banner-block">
-                <div class="left-banner"> <a href="#"><img src="images/product/left-banner.jpg" alt="#"></a> </div>
+                <div class="left-banner"> <a href="#"><img src="{{ MEDIA_URL }}images/product/left-banner.jpg" alt="#"></a> </div>
               </div>
               <div class="sidebar-widget Best-Products-block">
                 <div class="sidebar-title">
@@ -122,7 +121,7 @@
                   <li>
                     <div class="product-block ">
                       <div class="item col-md-4 col-sm-4 col-xs-4">
-                        <div class="image"> <a href="product-detail-view.html"><img class="img-responsive" title="T-shirt" alt="T-shirt" src="images/product/4prod281x366.jpg"></a> </div>
+                        <div class="image"> <a href="product-detail-view.html"><img class="img-responsive" title="T-shirt" alt="T-shirt" src="{{ MEDIA_URL }}images/product/4prod281x366.jpg"></a> </div>
                       </div>
                       <div class="item col-md-8 col-sm-8 col-xs-8">
                         <div class="product-details">
@@ -139,7 +138,7 @@
                   <li>
                     <div class="product-block ">
                       <div class="item col-md-4 col-sm-4 col-xs-4">
-                        <div class="image"> <a href="product-detail-view.html"><img class="img-responsive" title="T-shirt" alt="T-shirt" src="images/product/5prod281x366.jpg"></a> </div>
+                        <div class="image"> <a href="product-detail-view.html"><img class="img-responsive" title="T-shirt" alt="T-shirt" src="{{ MEDIA_URL }}images/product/5prod281x366.jpg"></a> </div>
                       </div>
                       <div class="item col-md-8 col-sm-8 col-xs-8">
                         <div class="product-details">
@@ -162,7 +161,7 @@
         <div class="col-md-9 col-sm-8"> 
           <!-- right block Start  -->
           <div id="right">
-            <div class="category-banner"> <a href="#"><img src="images/product/Category-banner.jpg" alt="#"></a> </div>
+            <div class="category-banner"> <a href="#"><img src="{{ category.banner.url }}" alt="#"></a> </div>
             <div class="row">
               <div class="col-md-6">
                 <div class="view">
@@ -428,6 +427,5 @@
     	$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
       	" - $" + $( "#slider-range" ).slider( "values", 1 ) );
   		});
-  	</script> 
-<script src="{% static 'ecommerce/js/globle.js' %}"></script>
+</script> 
 {% endblock content %}

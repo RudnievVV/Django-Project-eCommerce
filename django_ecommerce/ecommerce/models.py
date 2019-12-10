@@ -7,6 +7,7 @@ from djmoney.models.fields import MoneyField
 class Category(models.Model):
     title = models.CharField(max_length=150, db_index=True)
     slug = models.SlugField(max_length=150, unique=True, null=True, db_index=True)
+    banner = models.ImageField(upload_to='images/category/%Y/%m/%d', default='images/category/Category-banner.jpg')
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -34,7 +35,7 @@ class Product(models.Model):
     stock = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
-    image = models.ImageField(upload_to='images/products/%Y/%m/%d', default='images/product/product_default.jpg', blank=True)
+    image = models.ImageField(upload_to='images/product/%Y/%m/%d', default='images/product/product_default.jpg')
 
     class Meta:
         ordering = ('title', )
