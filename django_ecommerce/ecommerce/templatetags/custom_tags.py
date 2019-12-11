@@ -54,10 +54,16 @@ def new_arrivals():
 
 
 @register.simple_tag
-def all_categories():
+def all_categories(usage_place):
     all_categories_list = Category.objects.all()
     all_categories_html = ''
-    for category in all_categories_list:
-        all_categories_html += f"<option class='computer'>{category.title}</option>"
+    if usage_place == 'main_search':
+        for category in all_categories_list:
+            if category.category_products_count():
+                all_categories_html += f"<option class='computer'>{category.title}</option>"
+    if usage_place == 'categories_list':
+        for category in all_categories_list:
+            if category.category_products_count():
+                all_categories_html += f"<li><a href='{category.get_absolute_url()}'>{category.title}</a></li>"
 
     return mark_safe(all_categories_html)

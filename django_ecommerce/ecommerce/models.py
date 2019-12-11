@@ -19,12 +19,15 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+    def category_products_count(self):
+        return Product.objects.filter(category=self).count()
+
     def get_absolute_url(self):
         return reverse('product-list-by-category', args=[self.slug])
 
 
 class Product(models.Model):
-    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name='category', on_delete=models.CASCADE)
     title = models.CharField(max_length=100, db_index=True)
     slug = models.SlugField(max_length=100, null=True, db_index=True)
     description = models.TextField(blank=True)

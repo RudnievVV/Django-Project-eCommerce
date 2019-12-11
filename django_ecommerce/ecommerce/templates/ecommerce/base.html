@@ -156,7 +156,7 @@
                 <div class="search_cat">
                   <select class="search-category" name="search-category">
                     <option class="computer" selected>All Categories</option>
-                    {% all_categories %}
+                    {% all_categories "main_search" %}
                   </select>
                   <span class="fa fa-angle-down"></span> </div>
                 <input type="text" placeholder="Search...">
@@ -211,7 +211,7 @@
                         </tr>
                       </tbody>
                     </table>
-                    <div class="controls"> <a class="btn btn-primary pull-left" href="cart.html" id="view-cart"><i class="fa fa-shopping-cart"></i> View Cart </a> <a class="btn btn-primary pull-right" href="checkout.html" id="checkout"><i class="fa fa-share"></i> Checkout</a> </div>
+                    <div class="controls"> <a class="btn btn-primary pull-left" href="{% url 'cart-detail' %}" id="view-cart"><i class="fa fa-shopping-cart"></i> View Cart </a> <a class="btn btn-primary pull-right" href="checkout.html" id="checkout"><i class="fa fa-share"></i> Checkout</a> </div>
                   </div>
                 </li>
               </ul>
@@ -248,22 +248,14 @@
           <a href="#" class="navbar-brand">menu</a> </div>
         <div class="navbar-collapse collapse" id="navbar">
           <ul class="nav navbar-nav">
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="grid-view.html">WOMEN</a></li>
-            <li><a href="grid-view.html">MEN</a><span class="new">new</span></li>
-            <li class="dropdown"> <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#"> PAGES<span class="caret"></span></a>
+            <li><a href="{% url 'ecommerce-home' %}">HOME</a></li>
+            <li class="dropdown"> <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">CATEGORIES<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="checkout.html">Checkout</a></li>
-                <li><a href="cart.html">Shoping Cart</a></li>
-                <li><a href="checkout-step1.html">Billing & shipping address</a></li>
-                <li><a href="checkout-step2.html">Delivery method </a></li>
-                <li><a href="checkout-step3.html">Payment method</a></li>
-                <li><a href="checkout-step4.html">Order riview</a></li>
-                <li><a href="404.html">Page Notfound</a></li>
+                {% all_categories "categories_list" %}
               </ul>
             </li>
-            <li><a href="blog.html">BLOG</a></li>
-            <li><a href="contact-us.html">CONTACT US</a></li>
+            <li><a href="#">BLOG</a><span class="new">new</span></li>
+            <li><a href="#">CONTACT US</a></li>
             <li><a href="{% url 'about-us' %}">ABOUT US</a></li>
           </ul>
         </div>

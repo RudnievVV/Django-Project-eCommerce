@@ -48,7 +48,9 @@
                 </div>
                 <ul class="title-toggle">
                   {% for category in categories %}
-                    <li><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></li>
+                    {% if category.category_products_count %}
+                      <li><a href="{{ category.get_absolute_url }}">{{ category.title }}</a> ({{ category.category_products_count }})</li>
+                    {% endif %}
                   {% empty %}
                     <li>No categories</li>
                   {% endfor %}
@@ -104,7 +106,7 @@
                   <li>
                     <div class="product-block ">
                       <div class="item col-md-4 col-sm-4 col-xs-4">
-                        <div class="image"> <a href="product-detail-view.html"><img class="img-responsive" title="T-shirt" alt="T-shirt" src="images/product/3prod281x366.jpg"></a> </div>
+                        <div class="image"> <a href="product-detail-view.html"><img class="img-responsive" title="T-shirt" alt="T-shirt" src="{{ MEDIA_URL }}images/product/3prod281x366.jpg"></a> </div>
                       </div>
                       <div class="item col-md-8 col-sm-8 col-xs-8">
                         <div class="product-details">
@@ -165,10 +167,10 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="view">
-                  <div class="grid active "><a href="grid-view.html">
+                  <div class="grid active "><a href="#">
                     <div class="grid-icon "></div>
                     </a> </div>
-                  <div class="list"><a href="list-view.html">
+                  <div class="list"><a href="#">
                     <div class="list-icon "></div>
                     </a> </div>
                 </div>
@@ -203,207 +205,56 @@
             </div>
             <div class="product-grid-view">
               <ul>
-                <li>
-                  <div class="item col-md-4 col-sm-6 col-xs-6">
-                    <div class="product-block ">
-                      <div class="image"> <a href="product-detail-view.html"><img class="img-responsive" title="T-shirt" alt="T-shirt" src="images/product/1prod281x366.jpg"></a> </div>
-                      <div class="product-details">
-                        <div class="product-name">
-                          <h4><a href="product-detail-view.html">Black African Print Pencil Skirt </a></h4>
-                        </div>
-                        <div class="price"> <span class="price-old">$123.20</span> <span class="price-new">$14.99</span> </div>
-                        <div class="product-hov">
-                          <ul>
-                            <li class="wish"><a href="#"></a></li>
-                            <li class="addtocart"><a href="#">Add to Cart</a> </li>
-                            <li class="compare"><a href="#"></a></li>
-                          </ul>
-                          <div class="review"> <span class="rate"> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star"></i> </span> </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="item col-md-4 col-sm-6 col-xs-6">
-                    <div class="product-block ">
-                      <div class="image"> <a href="product-detail-view.html"><img class="img-responsive" title="T-shirt" alt="T-shirt" src="images/product/2prod281x366.jpg"></a> </div>
-                      <div class="product-details">
-                        <div class="product-name">
-                          <h4><a href="product-detail-view.html">Black African Print Pencil Skirt </a></h4>
-                        </div>
-                        <div class="price"> <span class="price-old">$123.20</span> <span class="price-new">$14.99</span> </div>
-                        <div class="product-hov">
-                          <ul>
-                            <li class="wish"><a href="#"></a></li>
-                            <li class="addtocart"><a href="#">Add to Cart</a> </li>
-                            <li class="compare"><a href="#"></a></li>
-                          </ul>
-                          <div class="review"> <span class="rate"> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star"></i> </span> </div>
+                {% for product in products %}
+                  <li>
+                    <div class="item col-md-4 col-sm-6 col-xs-6">
+                      <div class="product-block ">
+                        <div class="image"> <a href="{{ product.get_absolute_url }}"><img class="img-responsive" title="{{ product.title }}" alt="{{ product.title }}" src="{{ product.image.url }}"></a> </div>
+                        <div class="product-details">
+                          <div class="product-name">
+                            <h4><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></h4>
+                          </div>
+                          <div class="price"> <span class="price-old"></span> <span class="price-new">{{ product.price }}</span> </div>
+                          <div class="product-hov">
+                            <ul>
+                              <li class="wish"><a href="#"></a></li>
+                              <li class="addtocart"><a href="#">Add to Cart</a> </li>
+                              <li class="compare"><a href="#"></a></li>
+                            </ul>
+                            <div class="review"> <span class="rate"> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star"></i> </span> </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="item col-md-4 col-sm-6 col-xs-6">
-                    <div class="product-block ">
-                      <div class="image"> <a href="product-detail-view.html"><img class="img-responsive" title="T-shirt" alt="T-shirt" src="images/product/3prod281x366.jpg"></a> </div>
-                      <div class="product-details">
-                        <div class="product-name">
-                          <h4><a href="product-detail-view.html">Black African Print Pencil Skirt </a></h4>
-                        </div>
-                        <div class="price"> <span class="price-old">$123.20</span> <span class="price-new">$14.99</span> </div>
-                        <div class="product-hov">
-                          <ul>
-                            <li class="wish"><a href="#"></a></li>
-                            <li class="addtocart"><a href="#">Add to Cart</a> </li>
-                            <li class="compare"><a href="#"></a></li>
-                          </ul>
-                          <div class="review"> <span class="rate"> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star"></i> </span> </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="item col-md-4 col-sm-6 col-xs-6">
-                    <div class="product-block ">
-                      <div class="image"> <a href="product-detail-view.html"><img class="img-responsive" title="T-shirt" alt="T-shirt" src="images/product/4prod281x366.jpg"></a> </div>
-                      <div class="product-details">
-                        <div class="product-name">
-                          <h4><a href="product-detail-view.html">Black African Print Pencil Skirt </a></h4>
-                        </div>
-                        <div class="price"> <span class="price-old">$123.20</span> <span class="price-new">$14.99</span> </div>
-                        <div class="product-hov">
-                          <ul>
-                            <li class="wish"><a href="#"></a></li>
-                            <li class="addtocart"><a href="#">Add to Cart</a> </li>
-                            <li class="compare"><a href="#"></a></li>
-                          </ul>
-                          <div class="review"> <span class="rate"> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star"></i> </span> </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="item col-md-4 col-sm-6 col-xs-6">
-                    <div class="product-block ">
-                      <div class="image"> <a href="product-detail-view.html"><img class="img-responsive" title="T-shirt" alt="T-shirt" src="images/product/5prod281x366.jpg"></a> </div>
-                      <div class="product-details">
-                        <div class="product-name">
-                          <h4><a href="product-detail-view.html">Black African Print Pencil Skirt </a></h4>
-                        </div>
-                        <div class="price"> <span class="price-old">$123.20</span> <span class="price-new">$14.99</span> </div>
-                        <div class="product-hov">
-                          <ul>
-                            <li class="wish"><a href="#"></a></li>
-                            <li class="addtocart"><a href="#">Add to Cart</a> </li>
-                            <li class="compare"><a href="#"></a></li>
-                          </ul>
-                          <div class="review"> <span class="rate"> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star"></i> </span> </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="item col-md-4 col-sm-6 col-xs-6">
-                    <div class="product-block ">
-                      <div class="image"> <a href="product-detail-view.html"><img class="img-responsive" title="T-shirt" alt="T-shirt" src="images/product/2prod281x366.jpg"></a> </div>
-                      <div class="product-details">
-                        <div class="product-name">
-                          <h4><a href="product-detail-view.html">Black African Print Pencil Skirt </a></h4>
-                        </div>
-                        <div class="price"> <span class="price-old">$123.20</span> <span class="price-new">$14.99</span> </div>
-                        <div class="product-hov">
-                          <ul>
-                            <li class="wish"><a href="#"></a></li>
-                            <li class="addtocart"><a href="#">Add to Cart</a> </li>
-                            <li class="compare"><a href="#"></a></li>
-                          </ul>
-                          <div class="review"> <span class="rate"> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star"></i> </span> </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="item col-md-4 col-sm-6 col-xs-6">
-                    <div class="product-block ">
-                      <div class="image"> <a href="product-detail-view.html"><img class="img-responsive" title="T-shirt" alt="T-shirt" src="images/product/6prod281x366.jpg"></a> </div>
-                      <div class="product-details">
-                        <div class="product-name">
-                          <h4><a href="product-detail-view.html">Black African Print Pencil Skirt </a></h4>
-                        </div>
-                        <div class="price"> <span class="price-old">$123.20</span> <span class="price-new">$14.99</span> </div>
-                        <div class="product-hov">
-                          <ul>
-                            <li class="wish"><a href="#"></a></li>
-                            <li class="addtocart"><a href="#">Add to Cart</a> </li>
-                            <li class="compare"><a href="#"></a></li>
-                          </ul>
-                          <div class="review"> <span class="rate"> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star"></i> </span> </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="item col-md-4 col-sm-6 col-xs-6">
-                    <div class="product-block ">
-                      <div class="image"> <a href="product-detail-view.html"><img class="img-responsive" title="T-shirt" alt="T-shirt" src="images/product/6prod281x366.jpg"></a> </div>
-                      <div class="product-details">
-                        <div class="product-name">
-                          <h4><a href="product-detail-view.html">Black African Print Pencil Skirt </a></h4>
-                        </div>
-                        <div class="price"> <span class="price-old">$123.20</span> <span class="price-new">$14.99</span> </div>
-                        <div class="product-hov">
-                          <ul>
-                            <li class="wish"><a href="#"></a></li>
-                            <li class="addtocart"><a href="#">Add to Cart</a> </li>
-                            <li class="compare"><a href="#"></a></li>
-                          </ul>
-                          <div class="review"> <span class="rate"> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star"></i> </span> </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="item col-md-4 col-sm-6 col-xs-6">
-                    <div class="product-block ">
-                      <div class="image"> <a href="product-detail-view.html"><img class="img-responsive" title="T-shirt" alt="T-shirt" src="images/product/7prod281x366.jpg"></a> </div>
-                      <div class="product-details">
-                        <div class="product-name">
-                          <h4><a href="product-detail-view.html">Black African Print Pencil Skirt </a></h4>
-                        </div>
-                        <div class="price"> <span class="price-old">$123.20</span> <span class="price-new">$14.99</span> </div>
-                        <div class="product-hov">
-                          <ul>
-                            <li class="wish"><a href="#"></a></li>
-                            <li class="addtocart"><a href="#">Add to Cart</a> </li>
-                            <li class="compare"><a href="#"></a></li>
-                          </ul>
-                          <div class="review"> <span class="rate"> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star"></i> </span> </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
+                  </li>
+                {% endfor %}
               </ul>
             </div>
           </div>
           <div class="row">
             <div class="pagination-bar">
               <ul>
-                <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-              </ul>
+                {% if products.paginator.num_pages > 1 %}
+
+                  {% if products.has_previous %}
+                      <li><a href="?page=1">First</a></li>
+                      <li><a href="?page={{ products.previous_page_number }}"><i class="fa fa-angle-left"></i></a></li>
+                  {% endif%}
+
+                  {% for num in products.paginator.page_range %}
+                      {% if products.number == num %}
+                          <li class="active"><a href="?page={{ num }}">{{ num }}</a></li>
+                      {% elif num > products.number|add:'-3' and num < products.number|add:'3' %}
+                          <li><a href="?page={{ num }}">{{ num }}</a></li>
+                      {% endif %}
+                  {% endfor %}
+
+                  {% if products.has_next %}
+                      <li><a href="?page={{ products.next_page_number }}"><i class="fa fa-angle-right"></i></a></li>
+                      <li><a href="?page={{ products.paginator.num_pages }}">Last</a></li>
+                  {% endif%}
+
+                {% endif %}
             </div>
           </div>
           <!-- right block end  --> 

@@ -1111,42 +1111,42 @@ footer {
 	margin: 0 0 0 5px;
 }
 .active .grid-icon {
-	background: #f5f5f5 url(../images/list-grid.png) scroll 12px -24px no-repeat;
+	background: #f5f5f5 url(../list-grid.png) scroll 12px -24px no-repeat;
 	border: 2px solid #fff;
 	height: 43px;
 	width: 43px;
 }
 .grid-icon {
-	background: #f5f5f5 url(../images/list-grid.png) scroll 12px 12px no-repeat;
+	background: #f5f5f5 url(../list-grid.png) scroll 12px 12px no-repeat;
 	border: 2px solid #fff;
 	height: 43px;
 	width: 43px;
 }
 .grid-icon:hover {
-	background: #f5f5f5 url(../images/list-grid.png) scroll 12px -24px no-repeat;
+	background: #f5f5f5 url(../list-grid.png) scroll 12px -24px no-repeat;
 	border: 2px solid #fff;
 }
 .active .grid-icon:hover {
-	background: #f5f5f5 url(../images/list-grid.png) scroll 12px -24px no-repeat;
+	background: #f5f5f5 url(../list-grid.png) scroll 12px -24px no-repeat;
 	border: 2px solid #fff;
 }
 .active .list-icon {
-	background: #f5f5f5 url(../images/list-grid.png) scroll -21px -24px no-repeat;
+	background: #f5f5f5 url(../list-grid.png) scroll -21px -24px no-repeat;
 	border: 2px solid #fff;
 	height: 43px;
 	width: 43px;
 }
 .list-icon {
-	background: #f5f5f5 url(../images/list-grid.png) scroll -21px 12px no-repeat;
+	background: #f5f5f5 url(../list-grid.png) scroll -21px 12px no-repeat;
 	border: 2px solid #fff;
 	height: 43px;
 	width: 43px;
 }
 .list-icon:hover {
-	background: #f5f5f5 url(../images/list-grid.png) scroll -21px -24px no-repeat;
+	background: #f5f5f5 url(../list-grid.png) scroll -21px -24px no-repeat;
 }
 .active .list-icon:hover {
-	background: #f5f5f5 url(../images/list-grid.png) scroll -21px -24px no-repeat;
+	background: #f5f5f5 url(../list-grid.png) scroll -21px -24px no-repeat;
 }
 /*grid View start*/
 #left .product-details {
@@ -2404,6 +2404,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33ffffff', e
 	margin: 10px 0 0;
 }
 }
-
-
+#id_quantity.numberinput {
+    width: 24%!important;
+}
+#cart-page-contain > div > div > div.col-md-9.col-xs-12 > div.cart-content.table-responsive > table > tbody > tr:nth-child(2) > td.product-quantity > div > form > input.btn.btn-info {
+    margin-top: 5px;
+}
 /*Responcive media end*/

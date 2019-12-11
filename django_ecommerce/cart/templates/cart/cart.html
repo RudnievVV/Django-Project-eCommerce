@@ -1,0 +1,141 @@
+{% extends 'ecommerce/base.html' %}
+{% load custom_tags %}
+{% block content %}
+  <!-- offer block Start  -->
+  <div id="offer">
+    <div class="container">
+      <div class="offer">
+        <p>30 New Mega Sales. Up to 80% Off. Starting Everyday at 9 AM.</p>
+      </div>
+    </div>
+  </div>
+  <!-- offer block end  -->
+
+<!-- breadcrumb and page title block start  -->
+<div id="bread-crumb">
+  <div class="container">
+    <div class="row">
+        {% if title %}
+          <div class="col-md-3">
+            <div class="page-title">
+              <h4>{{ title }}</h4>
+            </div>
+          </div>
+        {% else %}
+          <div class="col-md-3">
+            <div class="page-title">
+              <h4>Python eCommerce</h4>
+            </div>
+          </div>
+        {% endif %}
+        {% breadcrumbs request.path %}
+    </div>
+  </div>
+</div>
+<!-- breadcrumb and page title block end  -->
+  
+  <div id="cart-page-contain">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9 col-xs-12"> 
+          <!-- left block Start  -->
+          <div class="cart-content table-responsive">
+            <table class="cart-table table-responsive" style="width:100%">
+              <tbody>
+                {% with total_items=cart|length %}
+                  {% if cart|length > 0 %}
+                    <tr class="Cartproduct carttableheader">
+                      <td style="width:15%"> Product</td>
+                      <td style="width:45%">Details</td>
+                      <td style="width:10%">QTY</td>
+                      <td style="width:15%">Total</td>
+                      <td class="delete" style="width:10%">&nbsp;</td>
+                    </tr>
+                    {% for item in cart %}
+                      {% with product=item.product %}
+                            <tr class="Cartproduct">
+                              <td><div class="image"><a href="{{ product.get_absolute_url }}"><img alt="{{ product.title }}" src="{{ product.image.url }}"></a></div></td>
+                              <td><div class="product-name">
+                                  <h4><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></h4>
+                                </div>
+                                <span class="size">SKU: {{ product.sku }}</span>
+                                <div class="price"><span>{{ product.price }}</span></div></td>
+                              <td class="product-quantity"><div class="quantity">
+                                <form action="{% url 'cart-add' product.id %}" method="post">
+                                    {% csrf_token %}
+                                    {{ item.update_quantity_form.quantity }}
+                                    {{ item.update_quantity_form.update}}
+                                    <input type="submit" value="Update" class="btn btn-info">
+                                </form>
+                                </div></td>
+                              <td class="price">${{ item.total_price }}</td>
+                              <td class="delete"><a href="{% url 'cart-remove' product.id %}" title="Delete"><i class="glyphicon glyphicon-trash"></i></a></td>
+                            </tr>
+                        </tbody>
+                      {% endwith %}
+                    {% endfor %}
+                  {% else %}
+                    Your cart is empty.
+                  {% endif %}
+                {% endwith %}
+            </table>
+          </div>
+          <div class="cart-bottom">
+            <div class="box-footer">
+              <div class="pull-left"><a class="btn btn-default" href="{% url 'ecommerce-home' %}"><i class="fa fa-arrow-left"></i> &nbsp; Continue shopping </a></div>
+            </div>
+          </div>
+          <!-- left block end  --> 
+        </div>
+        <div class="col-md-3 col-xs-12"> 
+          <!-- right block Start  -->
+          <div id="right">
+            <div class="sidebar-block">
+              <div class="sidebar-widget">
+                <div class="sidebar-title">
+                  <h4>Cart Summary</h4>
+                </div>
+                <div id="order-detail-content" class="title-toggle table-block">
+                  <div class="carttable">
+                    <table class="table" id="cart-summary">
+                      <tbody>
+                        <tr>
+                          <td>Total products</td>
+                          <td class="price">${{ cart.get_total_price }}</td>
+                        </tr>
+                        <tr>
+                          <td>Shipping</td>
+                          <td class="price"><span class="success">TBD</span></td>
+                        </tr>
+                        <tr class="cart-total-price ">
+                          <td>Total (tax excl.)</td>
+                          <td class="price">$0</td>
+                        </tr>
+                        <tr>
+                          <td>Total tax</td>
+                          <td id="total-tax" class="price">$0.00</td>
+                        </tr>
+                        <tr>
+                          <td> Total</td>
+                          <td id="total-price">${{ cart.get_total_price }}</td>
+                        </tr>
+                        <tr>
+                          <td colspan="2"><div class="input-append couponForm">
+                              <input type="text" placeholder="Gift or Coupon code" id="appendedInputButton">
+                              <button type="button" class="col-lg-4 btn btn-success">Apply!</button>
+                            </div></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="checkout"> <a href="checkout.html" title="checkout" class="btn btn-default ">Proceed to checkout</a> </div>
+            </div>
+          </div>
+          <!-- left block end  --> 
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
