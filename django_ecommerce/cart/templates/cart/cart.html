@@ -63,13 +63,13 @@
                               <td class="product-quantity"><div class="quantity">
                                 <form action="{% url 'cart-add' product.id %}" method="post">
                                     {% csrf_token %}
-                                    {{ item.update_quantity_form.quantity }}
-                                    {{ item.update_quantity_form.update}}
-                                    <input type="submit" value="Update" class="btn btn-info">
+                                    {{ item.update_quantity_form.quantity|add_css:'cart_quantity_update'  }}
+                                    {{ item.update_quantity_form.update }}
+                                    <input type="submit" value="Update" class="btn btn-info" id="id_quantity_cart_update">
                                 </form>
                                 </div></td>
                               <td class="price">${{ item.total_price }}</td>
-                              <td class="delete"><a href="{% url 'cart-remove' product.id %}" title="Delete"><i class="glyphicon glyphicon-trash"></i></a></td>
+                              <td class="delete"><a href="{% url 'cart-remove' product.id %}" title="Remove"><i class="glyphicon glyphicon-trash"></i></a></td>
                             </tr>
                         </tbody>
                       {% endwith %}

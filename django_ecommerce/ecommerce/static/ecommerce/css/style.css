@@ -602,7 +602,7 @@ h6 {
 .addtocart {
 	background: #2b282f;
 	overflow: hidden;
-	padding: 6px 15px;
+	padding: 0px 0px 0px 0px;
 	border: 1px solid #2b282f;
 	color: #fff;
 }
@@ -2407,7 +2407,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33ffffff', e
 #id_quantity.numberinput {
     width: 24%!important;
 }
-#cart-page-contain > div > div > div.col-md-9.col-xs-12 > div.cart-content.table-responsive > table > tbody > tr:nth-child(2) > td.product-quantity > div > form > input.btn.btn-info {
+#id_quantity_cart_update {
     margin-top: 5px;
+}
+#id_quantity.cart_quantity_update {
+    margin-right: 150px!important;
+    width: 60px!important;
+    padding: 3px;
+}
+.do_not_display {
+    display: none!important;
+}
+input[type="submit"].addtocart {
+    padding: 5px 15px;
 }
 /*Responcive media end*/

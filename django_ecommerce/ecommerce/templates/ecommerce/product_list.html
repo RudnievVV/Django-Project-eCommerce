@@ -218,7 +218,13 @@
                           <div class="product-hov">
                             <ul>
                               <li class="wish"><a href="#"></a></li>
-                              <li class="addtocart"><a href="#">Add to Cart</a> </li>
+                              <li class="addtocart">
+                                <form action="{% url 'cart-add' product.id %}" method="post">
+                                  {% csrf_token %}
+                                  <div class="do_not_display">{{ cart_product_form }}</div>
+                                  <input type="submit" value="Add to cart" class="addtocart">
+                                </form>
+                              </li>
                               <li class="compare"><a href="#"></a></li>
                             </ul>
                             <div class="review"> <span class="rate"> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star"></i> </span> </div>
