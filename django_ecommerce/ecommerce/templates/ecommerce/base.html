@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   {% if title %}
     <title>Django eCommerce - {{ title }}</title>
   {% else %}
@@ -31,114 +32,18 @@
     <div class="header-top">
       <div class="container">
         <div class="call pull-left">
-          <p>Call us toll free : <span>+1324 353 4689</span></p>
+          <p>Call me : <span>+38 063 418-37-98</span></p>
         </div>
         <div class="user-info pull-right">
           <div class="user">
             <ul>
-              <li><a href="#" data-toggle="modal" data-target="#login">Login</a> 
-                <!-- Modal -->
-                <div class="modal fade" id="login" role="dialog">
-                  <div class="modal-dialog"> 
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <div class="panel-heading">
-                          <div class="panel-title pull-left">Login</div>
-                          <div class="pull-right"><a href="#">Forgot password?</a>
-                            <button aria-hidden="true" data-dismiss="modal" class="close btn btn-xs " type="button"> <i class="fa fa-times"></i> </button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="modal-body">
-                        <form id="loginform" class="form-horizontal">
-                          <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email">
-                          </div>
-                          <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input id="login-password" type="password" class="form-control" name="password" placeholder="password">
-                          </div>
-                          <div class="input-group">
-                            <div class="checkbox">
-                              <label>
-                                <input id="login-remember" type="checkbox" name="remember" value="1">
-                                Remember me</label>
-                            </div>
-                          </div>
-                          <div class="form-group"> 
-                            <!-- Button -->
-                            <div class="col-sm-12 controls"> <a id="btn-login" href="#" class="btn btn-primary btn-success">Login</a> <a id="btn-fblogin" href="#" class="btn btn-primary facebook">Login with</a> </div>
-                          </div>
-                        </form>
-                      </div>
-                      <div class="modal-footer">
-                        <div class="form-group">
-                          <div class="col-md-12 control">
-                            <div>Don't have an account! <a href="#">Sign Up Here</a></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li><a href="#" data-toggle="modal" data-target="#register">Register</a>
-                <div class="modal fade" id="register" role="dialog">
-                  <div class="modal-dialog"> 
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <div class="panel-heading">
-                          <div class="panel-title pull-left">Register</div>
-                          <div class="pull-right">
-                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button"><i class="fa fa-times"></i> </button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="modal-body">
-                        <div class="control-group"> 
-                          <!-- Username -->
-                          <label class="control-label"  for="username">Username</label>
-                          <div class="controls">
-                            <input type="text" id="username" name="username" placeholder="" class="input-xlarge">
-                            <p class="help-block">Username can contain any letters or numbers, without spaces</p>
-                          </div>
-                        </div>
-                        <div class="control-group"> 
-                          <!-- E-mail -->
-                          <label class="control-label" for="email">E-mail</label>
-                          <div class="controls">
-                            <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
-                            <p class="help-block">Please provide your E-mail</p>
-                          </div>
-                        </div>
-                        <div class="control-group"> 
-                          <!-- Password-->
-                          <label class="control-label" for="password">Password</label>
-                          <div class="controls">
-                            <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
-                            <p class="help-block">Password should be at least 4 characters</p>
-                          </div>
-                        </div>
-                        <div class="control-group"> 
-                          <!-- Password -->
-                          <label class="control-label"  for="password_confirm">Password (Confirm)</label>
-                          <div class="controls">
-                            <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge">
-                            <p class="help-block">Please confirm password</p>
-                          </div>
-                        </div>
-                        <div class="control-group"> 
-                          <!-- Button -->
-                          <div class="controls">
-                            <button class="btn btn-success">Register</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
+              {% if user.is_authenticated %}
+                <li><a href="{% url 'my-account' %}">My Account</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+              {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+              {% endif %}
             </ul>
           </div>
         </div>
@@ -334,11 +239,11 @@
             <h4>Contact Us</h4>
             <ul class="toggle-footer">
               <li> <i class="fa fa-map-marker"></i>
-                <div class="address-info">Warehouse & Offices 12345 Street name,California, USA </div>
+                <div class="address-info">Warehouse & Offices 12345 Street name,Kharkiv, UA </div>
               </li>
               <li> <i class="fa fa-mobile"></i>
-                <div class="call-info">+91 987-654-321<br>
-                  <span>+0987-654-321</span> </div>
+                <div class="call-info">+38 063 418-37-98<br>
+                  <span>+38 063 418-37-98</span> </div>
               </li>
               <li> <i class="fa fa-envelope"></i>
                 <div class="email-info"> <a href="mailto:RudnievVVPython@gmail.com">RudnievVVPython@gmail.com</a></div>
@@ -403,5 +308,6 @@
 <script src="{% static 'ecommerce/js/globle.js' %}"></script>
 <script type="text/javascript" src="{% static 'ecommerce/js/smoothproducts.min.js' %}"></script>
 <script src="{% static 'ecommerce/js/jquery-ui.js' %}"></script>
+<script src="{% static 'ecommerce/js/custom.js' %}"></script>
 </body>
 </html>

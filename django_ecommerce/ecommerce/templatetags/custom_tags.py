@@ -18,7 +18,10 @@ def breadcrumbs(url_path):
         if url_path[breadcrumb] == '':
             breadcrumbs_html += '<li>\</li>'
         else:
-            breadcrumbs_html += '<li><a href="#">' + f"{url_path[breadcrumb]}</a></li>"
+            if breadcrumb == (len(url_path) - 2):
+                breadcrumbs_html += '<li><a href="#">' + f"{url_path[breadcrumb]}</a></li>"
+            else:
+                breadcrumbs_html += '<li><a href="#">' + f"{url_path[breadcrumb]}</a></li><li>\</li>"
     breadcrumbs_html += """</ul>
                           </div>
                         </div>"""

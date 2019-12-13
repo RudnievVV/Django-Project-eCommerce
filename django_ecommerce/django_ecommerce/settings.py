@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'users.apps.UsersConfig',
     'cart.apps.CartConfig',
     'djmoney',
     'crispy_forms',
@@ -130,6 +131,15 @@ MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
-LOGIN_REDIRECT_URL = 'ecommerce-home'
-
 CART_SESSION_ID = 'cart'
+
+LOGIN_REDIRECT_URL = 'ecommerce-home'
+LOGIN_URL = 'login'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = # Uncomment and Enter email address
+# EMAIL_HOST_PASSWORD = # Uncomment and Enter email host password
+

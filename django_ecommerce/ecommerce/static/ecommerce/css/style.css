@@ -2421,4 +2421,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33ffffff', e
 input[type="submit"].addtocart {
     padding: 5px 15px;
 }
+#id_username, #id_password, #id_email, #id_password1, #id_password2, #id_first_name, #id_last_name {
+    width: 20%!important;
+}
+
 /*Responcive media end*/
