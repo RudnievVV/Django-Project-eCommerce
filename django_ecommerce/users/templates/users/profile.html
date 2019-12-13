@@ -1,0 +1,59 @@
+{% extends 'ecommerce/base.html' %}
+{% load custom_tags %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <!-- offer block Start  -->
+  <div id="offer">
+    <div class="container">
+      <div class="offer">
+        <p>30 New Mega Sales. Up to 80% Off. Starting Everyday at 9 AM.</p>
+      </div>
+    </div>
+  </div>
+  <!-- offer block end  -->
+
+<!-- breadcrumb and page title block start  -->
+<div id="bread-crumb">
+  <div class="container">
+    <div class="row">
+        {% if title %}
+          <div class="col-md-3">
+            <div class="page-title">
+              <h4>{{ title }}</h4>
+            </div>
+          </div>
+        {% else %}
+          <div class="col-md-3">
+            <div class="page-title">
+              <h4>Python eCommerce</h4>
+            </div>
+          </div>
+        {% endif %}
+        {% breadcrumbs request.path %}
+    </div>
+  </div>
+</div>
+<!-- breadcrumb and page title block end  -->
+    <div class="container">
+  		<div class="media">
+    		<img class="img-responsive img-circle" src="{{ user.profile.image.url }}">
+    		<div class="media-body">
+      			<h2 class="account-heading">{{ user.username }}</h2>
+      			<p class="text-secondary">{{ user.email }}</p>
+        </div>
+      </div>
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset class="form-group">
+          <legend class="border-bottom mb-4">Profile Info</legend>
+          {{ u_form|crispy }}
+          {{ p_form|crispy }}
+        </fieldset>
+        <div class="form-group">
+          <button class="btn btn-info" type="submit">Update</button>
+          <button id="reset-image" class="btn btn-info">Reset image</button>
+        </div>
+      </form>
+    </div>
+
+{% endblock content %}
