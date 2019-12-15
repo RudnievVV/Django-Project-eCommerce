@@ -36,22 +36,20 @@
 <!-- breadcrumb and page title block end  -->
     <div class="container">
   		<div class="media">
-    		<img class="img-responsive img-circle" src="{{ user.profile.image.url }}">
     		<div class="media-body">
       			<h2 class="account-heading">{{ user.username }}</h2>
       			<p class="text-secondary">{{ user.email }}</p>
         </div>
       </div>
+      <br>
       <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <fieldset class="form-group">
-          <legend class="border-bottom mb-4">Profile Info</legend>
+          <legend class="border-bottom mb-4">My Account Info</legend>
           {{ u_form|crispy }}
-          {{ p_form|crispy }}
         </fieldset>
         <div class="form-group">
           <button class="btn btn-info" type="submit">Update</button>
-          <button id="reset-image" class="btn btn-info">Reset image</button>
         </div>
       </form>
     </div>

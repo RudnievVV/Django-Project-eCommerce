@@ -46,15 +46,3 @@ def profile(request):
     }
 
     return render(request, 'users/profile.html', context)
-
-
-@login_required
-def reset_image(request):
-    general_current_user_img = User.objects.get(username=request.user.username).profile.image.url
-    user_image = Profile.objects.filter(user_id=request.user.id)[0]
-    print("TEST")
-    if general_current_user_img != '/media/images/user/default.jpg':
-        os.unlink(os.path.join(MEDIA_ROOT, 'images', 'user', 'profile_pics', general_current_user_img.split('/')[-1]))
-    user_image.image = os.path.join(MEDIA_ROOT, 'images', 'user', 'default.jpg')
-    user_image.save()
-    return redirect('my-account')

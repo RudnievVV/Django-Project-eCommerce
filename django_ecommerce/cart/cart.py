@@ -38,14 +38,14 @@ class Cart(object):
 
         for item in self.cart.values():
             item['price'] = item['price']
-            item['total_price'] = float(item['price'][1:]) * item['quantity']
+            item['total_price'] = round(float(item['price'][1:]) * item['quantity'], 2)
             yield item
 
     def __len__(self):
         return sum(item['quantity'] for item in self.cart.values())
 
     def get_total_price(self):
-        return sum(float(item['price'][1:]) * item['quantity'] for item in self.cart.values())
+        return round(sum(float(item['price'][1:]) * item['quantity'] for item in self.cart.values()), 2)
 
     def clear(self):
         del self.session[settings.CART_SESSION_ID]
