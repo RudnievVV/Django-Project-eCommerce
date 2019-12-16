@@ -232,6 +232,25 @@ h6 {
 	float: right;
 	position: relative;
 }
+.search-on-scroll {
+	float: left;
+	position: relative;
+}
+.search-on-scroll input {
+	border: 1px solid #d9121f;
+	float: left;
+	height: 46px;
+	width: 370px;
+	padding: 10px;
+	border-radius: 0;
+}
+.search-on-scroll .submit {
+	background: #fafafa;
+	border-left: none;
+	border-color: #d9121f;
+	color: #d9121f;
+	padding: 15px 16px;
+}
 .search input {
 	border: 1px solid #d9121f;
 	float: left;
@@ -281,6 +300,10 @@ h6 {
 	width: 360px;
 	padding: 10px;
 }
+.cart-on-scroll .dropdown-menu {
+	width: 360px;
+	padding: 10px;
+}
 .table.pricetotal {
 	border-top: 1px solid #e5e5e5;
 }
@@ -322,6 +345,22 @@ h6 {
 	font-weight: 500;
 	color: #d9121f;
 }
+.cart-on-scroll {
+	float: left;
+}
+.cart-on-scroll > a {
+	float: left;
+	font-weight: 700;
+	color: #000;
+}
+.cart-box.cart-box > a {
+	float: left;
+	margin: 0;
+}
+.cart-on-scroll span {
+	font-weight: 500;
+	color: #d9121f;
+}
 .remove .fa.fa-times {
 	color: #e54242;
 }
@@ -346,6 +385,12 @@ h6 {
 	margin-bottom: 0;
 }
 .cart .table.pricetotal {
+	margin: 0;
+}
+.cart-on-scroll .table.table-striped {
+	margin-bottom: 0;
+}
+.cart-on-scroll .table.pricetotal {
 	margin: 0;
 }
 .glyphicon-user::before, .glyphicon-lock::before {
@@ -2287,6 +2332,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33ffffff', e
 	float: none;
 	display: inline-block;
 }
+.cart-on-scroll {
+	float: none;
+	display: inline-block;
+}
 .navbar-nav .open .dropdown-menu {
 	background: #fff;
 }
@@ -2400,6 +2449,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33ffffff', e
 	padding: 10px;
 	width: auto;
 }
+.cart-on-scroll .dropdown-menu {
+	padding: 10px;
+	width: auto;
+}
 .show-item {
 	margin: 10px 0 0;
 }
@@ -2424,5 +2477,27 @@ input[type="submit"].addtocart {
 #id_username, #id_password, #id_email, #id_password1, #id_password2, #id_first_name, #id_last_name {
     width: 20%!important;
 }
+#navbar-on-scroll {
+  background-color: #d9121f;
+  position: fixed;
+  top: -50px;
+  width: 100%;
+  display: block;
+  transition: top 0.3s;
+  z-index: 3;
+}
 
+#navbar-on-scroll a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 15px;
+  text-decoration: none;
+}
+
+#navbar-on-scroll a:hover {
+  background-color: #ddd;
+  color: black;
+}
 /*Responcive media end*/
