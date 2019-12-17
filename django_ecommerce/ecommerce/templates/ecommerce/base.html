@@ -57,7 +57,7 @@
           </div>
           <div class="col-md-6 search_block">
             <div class="search">
-              <form action="grid-view.html">
+              <form action="#">
                 <div class="search_cat">
                   <select class="search-category" name="search-category">
                     <option class="computer" selected>All Categories</option>
@@ -142,10 +142,7 @@
             <div class="new-further">
               <p>New in kors look  : </p>
               <ul class="toggle-newinFurther">
-                <li><a href="#">Women</a></li>
-                <li><a href="#">Clothing</a></li>
-                <li><a href="#">Nightwear</a></li>
-                <li><a href="#">Panties</a></li>
+                {% latest_categories %}
               </ul>
             </div>
           </div>
@@ -160,7 +157,7 @@
       <nav class="navbar navbar navbar-default">
         <div class="navbar-header">
           <button aria-controls= "navbar" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-          <a href="#" class="navbar-brand">menu</a> </div>
+          <a href="#" class="navbar-brand">Menu</a> </div>
         <div class="navbar-collapse collapse" id="navbar">
           <ul class="nav navbar-nav">
             <li><a href="{% url 'ecommerce-home' %}">HOME</a></li>
@@ -188,23 +185,23 @@
           <ul class="nav navbar-nav">
             <li><a href="{% url 'ecommerce-home' %}">HOME</a></li>
             <li class="dropdown"> <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">CATEGORIES<span class="caret"></span></a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu on-scroll">
                 {% all_categories "categories_list" %}
               </ul>
             </li>
-            <li><a href="#">BLOG</a><span class="new">new</span></li>
+            <li><a href="#">BLOG</a><span class="new on-scroll">new</span></li>
             <li><a href="#">CONTACT US</a></li>
             <li><a href="{% url 'about-us' %}">ABOUT US</a></li>
           </ul>
           <div class="search_block">
             <div class="search-on-scroll">
-              <form action="grid-view.html">
+              <form action="#">
                 <div class="search_cat">
-                  <select class="search-category" name="search-category">
+                  <select class="search-category-on-scroll" name="search-category">
                     <option class="computer" selected>All Categories</option>
                     {% all_categories "main_search" %}
                   </select>
-                  <span class="fa fa-angle-down"></span> </div>
+                  <span class="fa fa-angle-down on-scroll"></span> </div>
                 <input type="text" placeholder="Search...">
                 <button type="submit" class="btn submit"> <span class="fa fa-search"></span></button>
               </form>
@@ -214,7 +211,7 @@
               <div class="dropdown"></div>
               {% with total_items=cart|length %}
                 {% if cart|length > 0 %}
-                  <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">My Cart( {{ total_items }} )<span> ${{ cart.get_total_price }}</span></a>
+                  <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle on-scroll" href="#">My Cart( {{ total_items }} )<span> ${{ cart.get_total_price }}</span></a>
                   <ul class="dropdown-menu pull-right cart-dropdown-menu">
                     <li>
                       <table class="table table-striped">

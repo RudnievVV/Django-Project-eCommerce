@@ -50,3 +50,17 @@ def add_css(value, arg):
     if css_classes and arg not in css_classes:
         css_classes = f'{arg}'
     return value.as_widget(attrs={'class': css_classes})
+
+
+@register.simple_tag
+def latest_categories():
+    count = 0
+    latest_categories_html = ''
+    latest_categories_list = Category.objects.all().order_by('-created_at')
+    for category in latest_categories_list:
+        if category.category_products_count():
+            latest_categories_html += f"<li><a href='{category.get_absolute_url()}'>{category.title}</a></li>"
+            count += 1
+            if count == 4:
+                break
+    return mark_safe(latest_categories_html)

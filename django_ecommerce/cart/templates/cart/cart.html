@@ -105,7 +105,11 @@
                         </tr>
                         <tr>
                           <td>Shipping</td>
-                          <td class="price"><span class="success">TBD</span></td>
+                          {% if cart.get_total_price >= 500 %}
+                            <td class="price"><span class="success">FREE!</span></td>
+                          {% else %}
+                            <td class="price"><span class="success">TBD</span></td>
+                          {% endif %}
                         </tr>
                         <tr class="cart-total-price ">
                           <td>Total (tax excl.)</td>
