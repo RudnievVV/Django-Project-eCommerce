@@ -34,11 +34,12 @@
   </div>
 </div>
 <!-- breadcrumb and page title block end  -->
-  
+
+
   <div id="product-category">
     <div class="container">
       <div class="row">
-        <div class="col-md-3 col-sm-4"> 
+        <div class="col-md-3 col-sm-4">
           <!-- left block Start  -->
           <div id="left">
             <div class="sidebar-block">
@@ -160,17 +161,17 @@
           </div>
           <!-- left block end  --> 
         </div>
-        <div class="col-md-9 col-sm-8"> 
+        <div class="col-md-9 col-sm-8">
           <!-- right block Start  -->
           <div id="right">
             <div class="category-banner"> <a href="#"><img src="{{ category.banner.url }}" alt="#"></a> </div>
             <div class="row">
               <div class="col-md-6">
                 <div class="view">
-                  <div class="grid active "><a href="#">
+                  <div class="grid"><a href="{% url 'product-list-by-category-view' category_slug=category.slug category_view='grid' %}">
                     <div class="grid-icon "></div>
                     </a> </div>
-                  <div class="list"><a href="#">
+                  <div class="list active"><a href="{% url 'product-list-by-category-view' category_slug=category.slug category_view='list' %}">
                     <div class="list-icon "></div>
                     </a> </div>
                 </div>
@@ -194,27 +195,33 @@
                     <p>Show</p>
                     <div class="select-item">
                       <select>
-                        <option value="" selected="selected">24</option>
-                        <option value="">12</option>
-                        <option value="">6</option>
+                        <option value="" selected="selected">5</option>
+                        <option value="">10</option>
+                        <option value="">15</option>
                       </select>
                       <span class="fa fa-angle-down"></span> </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="product-grid-view">
+            <div class="product-list-view">
               <ul>
                 {% for product in products %}
                   <li>
-                    <div class="item col-md-4 col-sm-6 col-xs-6">
-                      <div class="product-block ">
+                    <div class="product-block ">
+                      <div class="item col-md-4 col-sm-6 col-xs-4">
                         <div class="image"> <a href="{{ product.get_absolute_url }}"><img class="img-responsive" title="{{ product.title }}" alt="{{ product.title }}" src="{{ product.image.url }}"></a> </div>
+                      </div>
+                      <div class="item col-md-8 col-sm-6 col-xs-8">
                         <div class="product-details">
                           <div class="product-name">
                             <h4><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></h4>
                           </div>
-                          <div class="price"> <span class="price-old"></span> <span class="price-new">{{ product.price }}</span> </div>
+                          <div class="review"> <span class="rate"> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star"></i> </span> 1 Review(s) | Add Your Review </div>
+                          <div class="price"> <span class="price-new">{{ product.price }}</span> </div>
+                          <div class="product-discription">
+                            <p>{{ product.description_short }}</p>
+                          </div>
                           <div class="product-hov">
                             <ul>
                               <li class="wish"><a href="#"></a></li>
@@ -227,7 +234,6 @@
                               </li>
                               <li class="compare"><a href="#"></a></li>
                             </ul>
-                            <div class="review"> <span class="rate"> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star rated"></i> <i class="fa fa-star"></i> </span> </div>
                           </div>
                         </div>
                       </div>
@@ -236,8 +242,7 @@
                 {% endfor %}
               </ul>
             </div>
-          </div>
-          <div class="row">
+           <div class="row">
             <div class="pagination-bar">
               <ul>
                 {% if products.paginator.num_pages > 1 %}
@@ -263,13 +268,13 @@
                 {% endif %}
             </div>
           </div>
-          <!-- right block end  --> 
+          <!-- right block end  -->
         </div>
       </div>
     </div>
   </div>
 </div>
-<!-- jQuery (price shorting) --> 
+<!-- jQuery (price shorting) -->
 <script>
 	$(function() {
     	$( "#slider-range" ).slider({
@@ -284,5 +289,5 @@
     	$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
       	" - $" + $( "#slider-range" ).slider( "values", 1 ) );
   		});
-</script> 
+</script>
 {% endblock content %}

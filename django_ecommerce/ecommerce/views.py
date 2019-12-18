@@ -29,7 +29,33 @@ def product_list(request, category_slug=None):
 
     context = {'category': category, 'categories': categories, 'products': products, 'title': category.title,
                'cart_product_form': cart_product_form}
-    return render(request, 'ecommerce/product_list.html', context)
+    return render(request, 'ecommerce/product_list_grid.html', context)
+
+
+def product_list_view(request, category_slug, category_view):
+    categories = Category.objects.all()
+    cart_product_form = CartAddProductForm()
+    if category_view == 'grid':
+        category = get_object_or_404(Category, slug=category_slug)
+        products = Product.objects.filter(category=category).order_by('-created_at')
+        paginator = Paginator(products, 12)
+        page = request.GET.get('page')
+        products = paginator.get_page(page)
+
+        context = {'category': category, 'categories': categories, 'products': products, 'title': category.title,
+                   'cart_product_form': cart_product_form}
+        return render(request, 'ecommerce/product_list_grid.html', context)
+
+    if category_view == 'list':
+        category = get_object_or_404(Category, slug=category_slug)
+        products = Product.objects.filter(category=category).order_by('-created_at')
+        paginator = Paginator(products, 5)
+        page = request.GET.get('page')
+        products = paginator.get_page(page)
+
+        context = {'category': category, 'categories': categories, 'products': products, 'title': category.title,
+                   'cart_product_form': cart_product_form}
+        return render(request, 'ecommerce/product_list_list.html', context)
 
 
 def product_detail(request, id, slug):
