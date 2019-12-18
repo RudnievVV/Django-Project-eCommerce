@@ -5,7 +5,7 @@
 }
 body {
 	color: #333333;
-    font-size: 13px;
+    font-size: 12.5px;
     font-weight: 400;
     line-height: 1.6;
     font-family: 'Poppins';
@@ -2519,30 +2519,53 @@ input[type="submit"].addtocart {
     width: 20%!important;
 }
 #navbar-on-scroll {
-  background-color: #d9121f;
-  position: fixed;
-  top: -50px;
-  width: 100%;
-  display: block;
-  transition: top 0.3s;
-  z-index: 3;
+    background-color: #d9121f;
+    position: fixed;
+    top: -50px;
+    width: 100%;
+    display: block;
+    transition: top 0.3s;
+    z-index: 3;
 }
 #navbar-on-scroll a {
-  display: block;
-  color: #f2f2f2;
-  text-align: left;
-  padding: 15px;
-  text-decoration: none;
+    display: block;
+    color: #f2f2f2;
+    text-align: left;
+    padding: 15px;
+    text-decoration: none;
 }
 #navbar-on-scroll a:hover {
-  background-color: #ddd;
-  color: black;
+    background-color: #ddd;
+    color: black;
 }
 #navbar-on-scroll a:focus {
-  color: black;
+    color: black;
 }
-.dropdown-toggle.on-scroll:focus {
-    background-color: #d9121f;
+#navbar > div.cart-on-scroll > a:focus {
     color: #f2f2f2;
+}
+#navbar > div.cart-on-scroll > a:focus:hover {
+    color: black;
+}
+#navbar > div.cart-on-scroll.open > a {
+    color: #f2f2f2;
+}
+#navbar > div.cart-on-scroll.open > a:hover {
+    color: black;
+}
+#navbar > div.cart-on-scroll.open > a:focus {
+    color: #f2f2f2;
+}
+#navbar > div.cart-on-scroll.open > a:hover:focus {
+    color: black;
+}
+#navbar > ul > li.dropdown.open > a {
+    color: black;
+}
+.dropdown-menu.pull-right {
+    right: auto!important;
+}
+#navbar > div.cart-on-scroll.open > ul > li > table > tbody > tr > td.text-left > a {
+    color: black;
 }
 /*Responcive media end*/

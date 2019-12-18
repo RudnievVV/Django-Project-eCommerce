@@ -74,144 +74,7 @@
               <div class="cart-icon dropdown"></div>
               {% with total_items=cart|length %}
                 {% if cart|length > 0 %}
-                  <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">My Cart( {{ total_items }} )<span> ${{ cart.get_total_price }}</span></a>
-                  <ul class="dropdown-menu pull-right cart-dropdown-menu">
-                    <li>
-                      <table class="table table-striped">
-                        <tbody>
-                          {% for item in cart %}
-                              {% with product=item.product %}
-                                <tr>
-                                  <td class="text-center"><a href="{{ product.get_absolute_url }}"><img class="img-thumbnail" src="{{ product.image.url }}" alt="{{ product.title }}"></a></td>
-                                  <td class="text-left"><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></td>
-                                  <td class="text-right quality">X{{ item.quantity }}</td>
-                                  <td class="text-right price-new">{{ product.price }}</td>
-                                  <td class="text-center"><a href="{% url 'cart-remove' product.id %}" type="button" title="Remove" class="btn btn-xs remove"><i class="fa fa-times"></i></a></td>
-                                </tr>
-                              {% endwith %}
-                          {% endfor %}
-                        </tbody>
-                      </table>
-                    </li>
-                      <li>
-                        <div class="minitotal">
-                          <table class="table pricetotal">
-                            <tbody>
-                              <tr>
-                                <td class="text-right"><strong>Sub-Total</strong></td>
-                                <td class="text-right price-new">${{ cart.get_total_price }}</td>
-                              </tr>
-                                {% if cart.get_total_price >= 500 %}
-                                  <tr>
-                                    <td class="text-right"><strong>Shipping</strong></td>
-                                    <td class="text-right price-new">FREE!</td>
-                                  </tr>
-                                  <tr>
-                                    <td class="text-right"><strong>Total</strong></td>
-                                    <td class="text-right price-new">${{ cart.get_total_price }}</td>
-                                  </tr>
-                                {% else %}
-                                  <tr>
-                                    <td class="text-right"><strong>Shipping</strong></td>
-                                    <td class="text-right price-new">TBD</td>
-                                  </tr>
-                                  <tr>
-                                    <td class="text-right"><strong>Total</strong></td>
-                                    <td class="text-right price-new">TBD</td>
-                                  </tr>
-                                {% endif %}
-                            </tbody>
-                          </table>
-                          <div class="controls"> <a class="btn btn-primary pull-left" href="{% url 'cart-detail' %}" id="view-cart"><i class="fa fa-shopping-cart"></i> View Cart </a> <a class="btn btn-primary pull-right" href="checkout.html" id="checkout"><i class="fa fa-share"></i> Checkout</a> </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                {% else %}
-                  <a aria-expanded="false" class="dropdown-toggle" href="#">My Cart is empty!</a>
-                {% endif %}
-              {% endwith %}
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="header-bottom">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="new-further">
-              <p>New in kors look  : </p>
-              <ul class="toggle-newinFurther">
-                {% latest_categories %}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Header End -->
-   <!-- Main menu Start -->
-  <div id="main-menu">
-    <div class="container">
-      <nav class="navbar navbar navbar-default">
-        <div class="navbar-header">
-          <button aria-controls= "navbar" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-          <a href="#" class="navbar-brand">Menu</a> </div>
-        <div class="navbar-collapse collapse" id="navbar">
-          <ul class="nav navbar-nav">
-            <li><a href="{% url 'ecommerce-home' %}">HOME</a></li>
-            <li class="dropdown"> <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">CATEGORIES<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                {% all_categories "categories_list" %}
-              </ul>
-            </li>
-            <li><a href="#">BLOG</a><span class="new">new</span></li>
-            <li><a href="#">CONTACT US</a></li>
-            <li><a href="{% url 'about-us' %}">ABOUT US</a></li>
-          </ul>
-        </div>
-          {% if messages %}
-            {% for message in messages %}
-              <div class="alert alert-{{ message.tags }}">
-                {{ message }}
-              </div>
-            {% endfor %}
-          {% endif %}
-      </nav>
-    </div>
-    <div id="navbar-on-scroll" class="container">
-	  <div class="navbar-collapse collapse" id="navbar">
-          <ul class="nav navbar-nav">
-            <li><a href="{% url 'ecommerce-home' %}">HOME</a></li>
-            <li class="dropdown"> <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">CATEGORIES<span class="caret"></span></a>
-              <ul class="dropdown-menu on-scroll">
-                {% all_categories "categories_list" %}
-              </ul>
-            </li>
-            <li><a href="#">BLOG</a><span class="new on-scroll">new</span></li>
-            <li><a href="#">CONTACT US</a></li>
-            <li><a href="{% url 'about-us' %}">ABOUT US</a></li>
-          </ul>
-          <div class="search_block">
-            <div class="search-on-scroll">
-              <form action="#">
-                <div class="search_cat">
-                  <select class="search-category-on-scroll" name="search-category">
-                    <option class="computer" selected>All Categories</option>
-                    {% all_categories "main_search" %}
-                  </select>
-                  <span class="fa fa-angle-down on-scroll"></span> </div>
-                <input type="text" placeholder="Search...">
-                <button type="submit" class="btn submit"> <span class="fa fa-search"></span></button>
-              </form>
-            </div>
-          </div>
-          <div class="cart-on-scroll">
-              <div class="dropdown"></div>
-              {% with total_items=cart|length %}
-                {% if cart|length > 0 %}
-                  <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle on-scroll" href="#">My Cart( {{ total_items }} )<span> ${{ cart.get_total_price }}</span></a>
+                  <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle">My Cart( {{ total_items }} )<span> ${{ cart.get_total_price }}</span></a>
                   <ul class="dropdown-menu pull-right cart-dropdown-menu">
                     <li>
                       <table class="table table-striped">
@@ -270,6 +133,145 @@
               {% endwith %}
           </div>
         </div>
+      </div>
+    </div>
+    <div class="header-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="new-further">
+              <p>New in kors look  : </p>
+              <ul class="toggle-newinFurther">
+                {% latest_categories %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Header End -->
+   <!-- Main menu Start -->
+  <div id="main-menu">
+    <div class="container">
+      <nav class="navbar navbar navbar-default">
+        <div class="navbar-header">
+          <button aria-controls= "navbar" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+          <a href="#" class="navbar-brand">Menu</a> </div>
+        <div class="navbar-collapse collapse" id="navbar">
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'ecommerce-home' %}">HOME</a></li>
+            <li class="dropdown"> <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle">CATEGORIES<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                {% all_categories "categories_list" %}
+              </ul>
+            </li>
+            <li><a href="#">BLOG</a><span class="new">new</span></li>
+            <li><a href="#">CONTACT US</a></li>
+            <li><a href="{% url 'about-us' %}">ABOUT US</a></li>
+          </ul>
+        </div>
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+      </nav>
+    </div>
+    <div id="navbar-on-scroll" class="container">
+      <div class="container">
+        <div class="navbar-collapse collapse" id="navbar">
+            <ul class="nav navbar-nav">
+              <li><a href="{% url 'ecommerce-home' %}">HOME</a></li>
+              <li class="dropdown"> <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle">CATEGORIES<span class="caret"></span></a>
+                <ul class="dropdown-menu on-scroll">
+                  {% all_categories "categories_list" %}
+                </ul>
+              </li>
+              <li><a href="#">BLOG</a><span class="new on-scroll">new</span></li>
+              <li><a href="#">CONTACT US</a></li>
+              <li><a href="{% url 'about-us' %}">ABOUT US</a></li>
+            </ul>
+            <div class="search_block">
+              <div class="search-on-scroll">
+                <form action="#">
+                  <div class="search_cat">
+                    <select class="search-category-on-scroll" name="search-category">
+                      <option class="computer" selected>All Categories</option>
+                      {% all_categories "main_search" %}
+                    </select>
+                    <span class="fa fa-angle-down on-scroll"></span> </div>
+                  <input type="text" placeholder="Search...">
+                  <button type="submit" class="btn submit"> <span class="fa fa-search"></span></button>
+                </form>
+              </div>
+            </div>
+            <div class="cart-on-scroll">
+                <div class="dropdown"></div>
+                {% with total_items=cart|length %}
+                  {% if cart|length > 0 %}
+                    <a aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="on-scroll">My Cart( {{ total_items }} ) ${{ cart.get_total_price }}</a>
+                    <ul class="dropdown-menu pull-right cart-dropdown-menu">
+                      <li>
+                        <table class="table table-striped">
+                          <tbody>
+                            {% for item in cart %}
+                                {% with product=item.product %}
+                                  <tr>
+                                    <td class="text-center"><a href="{{ product.get_absolute_url }}"><img class="img-thumbnail" src="{{ product.image.url }}" alt="{{ product.title }}"></a></td>
+                                    <td class="text-left"><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></td>
+                                    <td class="text-right quality">X{{ item.quantity }}</td>
+                                    <td class="text-right price-new">{{ product.price }}</td>
+                                    <td class="text-center"><a href="{% url 'cart-remove' product.id %}" type="button" title="Remove" class="btn btn-xs remove"><i class="fa fa-times"></i></a></td>
+                                  </tr>
+                                {% endwith %}
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                      </li>
+                        <li>
+                          <div class="minitotal">
+                            <table class="table pricetotal">
+                              <tbody>
+                                <tr>
+                                  <td class="text-right"><strong>Sub-Total</strong></td>
+                                  <td class="text-right price-new">${{ cart.get_total_price }}</td>
+                                </tr>
+                                  {% if cart.get_total_price >= 500 %}
+                                    <tr>
+                                      <td class="text-right"><strong>Shipping</strong></td>
+                                      <td class="text-right price-new">FREE!</td>
+                                    </tr>
+                                    <tr>
+                                      <td class="text-right"><strong>Total</strong></td>
+                                      <td class="text-right price-new">${{ cart.get_total_price }}</td>
+                                    </tr>
+                                  {% else %}
+                                    <tr>
+                                      <td class="text-right"><strong>Shipping</strong></td>
+                                      <td class="text-right price-new">TBD</td>
+                                    </tr>
+                                    <tr>
+                                      <td class="text-right"><strong>Total</strong></td>
+                                      <td class="text-right price-new">TBD</td>
+                                    </tr>
+                                  {% endif %}
+                              </tbody>
+                            </table>
+                            <div class="controls"> <a class="btn btn-primary pull-left" href="{% url 'cart-detail' %}" id="view-cart"><i class="fa fa-shopping-cart"></i> View Cart </a> <a class="btn btn-primary pull-right" href="checkout.html" id="checkout"><i class="fa fa-share"></i> Checkout</a> </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  {% else %}
+                    <a aria-expanded="false" class="dropdown-toggle on-scroll">My Cart is empty!</a>
+                  {% endif %}
+                {% endwith %}
+            </div>
+          </div>
+      </div>
 	</div>
   </div>
   <!-- Main menu End -->
@@ -406,6 +408,9 @@ function scrollFunction() {
     document.getElementById("navbar-on-scroll").style.top = "0px";
   } else {
     document.getElementById("navbar-on-scroll").style.top = "-62px";
+    if (document.getElementsByClassName("open")[0]) {
+      document.getElementsByClassName("open")[0].click();
+    }
   }
 }
 </script>
