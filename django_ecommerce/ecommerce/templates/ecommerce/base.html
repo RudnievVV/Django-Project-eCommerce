@@ -57,14 +57,14 @@
           </div>
           <div class="col-md-6 search_block">
             <div class="search">
-              <form action="#">
+              <form action="{% url 'main-search' %}">
                 <div class="search_cat">
                   <select class="search-category" name="search-category">
                     <option class="computer" selected>All Categories</option>
                     {% all_categories "main_search" %}
                   </select>
                   <span class="fa fa-angle-down"></span> </div>
-                <input type="text" placeholder="Search...">
+                <input type="text" name="search-input" placeholder="Search...">
                 <button type="submit" class="btn submit"> <span class="fa fa-search"></span></button>
               </form>
             </div>
@@ -196,14 +196,14 @@
             </ul>
             <div class="search_block">
               <div class="search-on-scroll">
-                <form action="#">
+                <form action="{% url 'main-search' %}">
                   <div class="search_cat">
                     <select class="search-category-on-scroll" name="search-category">
                       <option class="computer" selected>All Categories</option>
                       {% all_categories "main_search" %}
                     </select>
                     <span class="fa fa-angle-down on-scroll"></span> </div>
-                  <input type="text" placeholder="Search...">
+                  <input type="text" name="search-input" placeholder="Search...">
                   <button type="submit" class="btn submit"> <span class="fa fa-search"></span></button>
                 </form>
               </div>
