@@ -163,46 +163,47 @@
         <div class="col-md-9 col-sm-8"> 
           <!-- right block Start  -->
           <div id="right">
-            <div class="category-banner"> <a href="#"><img src="{{ category.banner.url }}" alt="#"></a> </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="view">
-                  <div class="grid active"><a href="{% url 'product-list-by-category-view' category_slug=category.slug category_view='grid' %}">
-                    <div class="grid-icon "></div>
-                    </a> </div>
-                  <div class="list"><a href="{% url 'product-list-by-category-view' category_slug=category.slug category_view='list' %}">
-                    <div class="list-icon "></div>
-                    </a> </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="shoring pull-right">
-                  <div class="short-by">
-                    <p>Sort By</p>
-                    <div class="select-item">
-                      <select>
-                        <option value="" selected="selected">Name (A to Z)</option>
-                        <option value="">Name(Z - A)</option>
-                        <option value="">price(low&gt;high)</option>
-                        <option value="">price(high &gt; low)</option>
-                        <option value="">rating(highest)</option>
-                        <option value="">rating(lowest)</option>
-                      </select>
-                      <span class="fa fa-angle-down"></span> </div>
-                  </div>
-                  <div class="show-item">
-                    <p>Show</p>
-                    <div class="select-item">
-                      <select>
-                        <option value="" selected="selected">12</option>
-                        <option value="">18</option>
-                        <option value="">24</option>
-                      </select>
-                      <span class="fa fa-angle-down"></span> </div>
+            <div class="category-banner"> <a href="#"><img src="{{ MEDIA_URL }}images/search_page_banner.jpg" alt="#"></a> </div>
+            {% if products|length %}
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="view">
+                    {% if products|length > 1 %}
+                      <br>We found {{ products|length }} products for you!
+                    {% else %}
+                      <br>There is only one found product!
+                    {% endif %}
                   </div>
                 </div>
+                <div class="col-md-6">
+                  <div class="shoring pull-right">
+                    <div class="short-by">
+                      <p>Sort By</p>
+                      <div class="select-item">
+                        <select>
+                          <option value="" selected="selected">Name (A to Z)</option>
+                          <option value="">Name (Z to A)</option>
+                          <option value="">Price (low &gt; high)</option>
+                          <option value="">Price (high &gt; low)</option>
+                          <option value="">Rating (highest)</option>
+                          <option value="">Rating (lowest)</option>
+                        </select>
+                        <span class="fa fa-angle-down"></span> </div>
+                    </div>
+                    <div class="show-item">
+                      <p>Show</p>
+                      <div class="select-item">
+                        <select>
+                          <option value="" selected="selected">12</option>
+                          <option value="">18</option>
+                          <option value="">24</option>
+                        </select>
+                        <span class="fa fa-angle-down"></span> </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
+            {% endif %}
             <div class="product-grid-view">
               <ul>
                 {% for product in products %}

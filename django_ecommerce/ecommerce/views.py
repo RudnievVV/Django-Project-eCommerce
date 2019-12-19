@@ -23,7 +23,7 @@ def product_list(request, category_slug=None):
     cart_product_form = CartAddProductForm()
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
-        products = Product.objects.filter(category=category).order_by('name')
+        products = Product.objects.filter(category=category).order_by('title')
         paginator = Paginator(products, 12)
         page = request.GET.get('page')
         products = paginator.get_page(page)
@@ -38,7 +38,7 @@ def product_list_view(request, category_slug, category_view):
     cart_product_form = CartAddProductForm()
     if category_view == 'grid':
         category = get_object_or_404(Category, slug=category_slug)
-        products = Product.objects.filter(category=category).order_by('name')
+        products = Product.objects.filter(category=category).order_by('title')
         paginator = Paginator(products, 12)
         page = request.GET.get('page')
         products = paginator.get_page(page)
@@ -49,7 +49,7 @@ def product_list_view(request, category_slug, category_view):
 
     if category_view == 'list':
         category = get_object_or_404(Category, slug=category_slug)
-        products = Product.objects.filter(category=category).order_by('name')
+        products = Product.objects.filter(category=category).order_by('title')
         paginator = Paginator(products, 5)
         page = request.GET.get('page')
         products = paginator.get_page(page)
@@ -72,12 +72,12 @@ def main_search(request):
     cart_product_form = CartAddProductForm()
     if request.GET.get('search-category') != "All Categories":
         products = Product.objects.filter(Q(category=Category.objects.get(title=(request.GET.get('search-category')))),
-                                          Q(title__icontains=request.GET.get('search-input').strip())).order_by('name')
+                                          Q(title__icontains=request.GET.get('search-input').strip())).order_by('title')
     else:
-        products = Product.objects.filter(title__icontains=request.GET.get('search-input').strip()).order_by('name')
+        products = Product.objects.filter(title__icontains=request.GET.get('search-input').strip()).order_by('title')
     paginator = Paginator(products, 12)
     page = request.GET.get('page')
     products = paginator.get_page(page)
     context = {'products': products, 'categories': categories,
-               'cart_product_form': cart_product_form,'title': 'Search Results'}
+               'cart_product_form': cart_product_form, 'title': 'Search Result'}
     return render(request, 'ecommerce/main_search.html', context=context)
