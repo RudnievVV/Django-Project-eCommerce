@@ -57,16 +57,16 @@
           </div>
           <div class="col-md-6 search_block">
             <div class="search">
-              <form action="{% url 'main-search' %}">
+
                 <div class="search_cat">
-                  <select class="search-category" name="search-category">
+                  <select id="search-category-select-option" class="search-category" name="search-category">
                     <option class="computer" selected>All Categories</option>
                     {% all_categories "main_search" %}
                   </select>
                   <span class="fa fa-angle-down"></span> </div>
-                <input type="text" name="search-input" placeholder="Search...">
+                <input id="search-category-input" type="text" name="search-input" placeholder="Search...">
                 <button id="search-button-confirm" type="submit" class="btn submit"> <span class="fa fa-search"></span></button>
-              </form>
+
             </div>
           </div>
           <div class="col-md-3 header-right">
@@ -196,16 +196,16 @@
             </ul>
             <div class="search_block">
               <div class="search-on-scroll">
-                <form action="{% url 'main-search' %}">
+
                   <div class="search_cat">
-                    <select class="search-category-on-scroll" name="search-category">
+                    <select id="search-category-select-option-on-scroll" class="search-category-on-scroll" name="search-category">
                       <option class="computer" selected>All Categories</option>
                       {% all_categories "main_search" %}
                     </select>
                     <span class="fa fa-angle-down on-scroll"></span> </div>
-                  <input type="text" name="search-input" placeholder="Search...">
-                  <button type="submit" class="btn submit"> <span class="fa fa-search"></span></button>
-                </form>
+                  <input id="search-category-input-on-scroll" type="text" name="search-input" placeholder="Search...">
+                  <button id="search-button-confirm-on-scroll" type="submit" class="btn submit"> <span class="fa fa-search"></span></button>
+
               </div>
             </div>
             <div class="cart-on-scroll">

@@ -67,17 +67,18 @@ def product_detail(request, id, slug):
     return render(request, 'ecommerce/product_detail.html', context)
 
 
-def main_search(request):
+def main_search(request, category_option, input_value):
     categories = Category.objects.all()
     cart_product_form = CartAddProductForm()
-    if request.GET.get('search-category') != "All Categories":
-        products = Product.objects.filter(Q(category=Category.objects.get(title=(request.GET.get('search-category')))),
-                                          Q(title__icontains=request.GET.get('search-input').strip())).order_by('title')
+    if category_option != "All Categories":
+        products = Product.objects.filter(Q(category=Category.objects.get(title=category_option)),
+                                          Q(title__icontains=input_value.strip())).order_by('title')
     else:
-        products = Product.objects.filter(title__icontains=request.GET.get('search-input').strip()).order_by('title')
+        products = Product.objects.filter(title__icontains=input_value.strip()).order_by('title')
     paginator = Paginator(products, 12)
+    products_count = products.count
     page = request.GET.get('page')
     products = paginator.get_page(page)
-    context = {'products': products, 'categories': categories,
+    context = {'products': products, 'categories': categories, 'products_count': products_count,
                'cart_product_form': cart_product_form, 'title': 'Search Result'}
     return render(request, 'ecommerce/main_search.html', context=context)
