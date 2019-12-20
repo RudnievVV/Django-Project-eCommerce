@@ -3,7 +3,7 @@
 {% load custom_tags %}
 {% block content %}
   <!-- offer block Start  -->
-  <div id="offer">
+<div id="offer" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
     <div class="container">
       <div class="offer">
         <p>30 New Mega Sales. Up to 80% Off. Starting Everyday at 9 AM.</p>
@@ -169,9 +169,9 @@
                 <div class="col-md-6">
                   <div class="view">
                     {% if products|length > 1 %}
-                      <br>We found {{ products|length }} products for you!
+                    <br>We found <strong>{{ products|length }}</strong> products for you!
                     {% else %}
-                      <br>There is only one found product!
+                      <br>There is only <strong>one</strong> found product!
                     {% endif %}
                   </div>
                 </div>
