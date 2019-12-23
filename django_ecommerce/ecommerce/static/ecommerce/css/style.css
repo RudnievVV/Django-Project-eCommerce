@@ -2568,4 +2568,8 @@ input[type="submit"].addtocart {
 #navbar > div.cart-on-scroll.open > ul > li > table > tbody > tr > td.text-left > a {
     color: black;
 }
+.category-products-count {
+    padding-left: 120px;
+    padding-top: 12px;
+}
 /*Responcive media end*/
