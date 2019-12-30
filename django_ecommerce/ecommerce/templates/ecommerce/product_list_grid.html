@@ -187,25 +187,28 @@
                   <div class="short-by">
                     <p>Sort By</p>
                     <div class="select-item">
-                      <select>
-                        <option value="" selected="selected">Name (A to Z)</option>
-                        <option value="">Name (Z to A)</option>
-                        <option value="">Price (low &gt; high)</option>
-                        <option value="">Price (high &gt; low)</option>
-                        <option value="">Rating (highest)</option>
-                        <option value="">Rating (lowest)</option>
-                      </select>
-                      <span class="fa fa-angle-down"></span> </div>
+                      <form method="POST">
+                        {% csrf_token %}
+                        <select name="pagination-sortby-select-dropdown" onchange="this.form.submit()">
+                          <option value="title" {% if pagination_sort_by == "title" %} selected="selected" {% endif %}>Name (A to Z)</option>
+                          <option value="-title" {% if pagination_sort_by == "-title" %} selected="selected" {% endif %}>Name (Z to A)</option>
+                          <option value="price" {% if pagination_sort_by == "price" %} selected="selected" {% endif %}>Price (low &gt; high)</option>
+                          <option value="-price" {% if pagination_sort_by == "-price" %} selected="selected" {% endif %}>Price (high &gt; low)</option>
+                          <option value="rating" {% if pagination_sort_by == "rating" %} selected="selected" {% endif %}>Rating (highest)</option>
+                          <option value="-rating" {% if pagination_sort_by == "-rating" %} selected="selected" {% endif %}>Rating (lowest)</option>
+                        </select>
+                        <span class="fa fa-angle-down"></span></div>
                   </div>
                   <div class="show-item">
                     <p>Show</p>
                     <div class="select-item">
-                      <select>
-                        <option value="" selected="selected">12</option>
-                        <option value="">18</option>
-                        <option value="">24</option>
-                      </select>
-                      <span class="fa fa-angle-down"></span> </div>
+                        <select name="pagination-show-select-dropdown" onchange="this.form.submit()">
+                          <option value="12" {% if pagination_show == 12 %} selected="selected" {% endif %}>12</option>
+                          <option value="18" {% if pagination_show == 18 %} selected="selected" {% endif %}>18</option>
+                          <option value="24" {% if pagination_show == 24 %} selected="selected" {% endif %}>24</option>
+                        </select>
+                        <span class="fa fa-angle-down"></span></div>
+                      </form>
                   </div>
                 </div>
               </div>

@@ -177,26 +177,29 @@
                         <div class="short-by">
                           <p>Sort By</p>
                           <div class="select-item">
-                            <select>
-                              <option value="" selected="selected">Name (A to Z)</option>
-                              <option value="">Name (Z to A)</option>
-                              <option value="">Price (low &gt; high)</option>
-                              <option value="">Price (high &gt; low)</option>
-                              <option value="">Rating (highest)</option>
-                              <option value="">Rating (lowest)</option>
-                            </select>
-                            <span class="fa fa-angle-down"></span> </div>
+                            <form method="POST">
+                              {% csrf_token %}
+                              <select name="pagination-sortby-select-dropdown" onchange="this.form.submit()">
+                                <option value="Name (A to Z)" selected="selected">Name (A to Z)</option>
+                                <option value="Name (Z to A)">Name (Z to A)</option>
+                                <option value="Price (low &gt; high)">Price (low &gt; high)</option>
+                                <option value="Price (high &gt; low)">Price (high &gt; low)</option>
+                                <option value="Rating (highest)">Rating (highest)</option>
+                                <option value="Rating (lowest)">Rating (lowest)</option>
+                              </select>
+                              <span class="fa fa-angle-down"></span></div>
                         </div>
                         <div class="show-item">
                           <p>Show</p>
                           <div class="select-item">
-                            <select>
-                              <option value="" selected="selected">12</option>
-                              <option value="">18</option>
-                              <option value="">24</option>
+                            <select name="pagination-show-select-dropdown" onchange="this.form.submit()">
+                              <option value="12" selected="selected">12</option>
+                              <option value="18">18</option>
+                              <option value="24">24</option>
                             </select>
-                            <span class="fa fa-angle-down"></span> </div>
+                            <span class="fa fa-angle-down"></span></div>
                         </div>
+                        </form>
                       </div>
                     </div>
                     {% else %}
