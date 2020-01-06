@@ -343,6 +343,9 @@ h6 {
 .img-thumbnail, .dropdown-menu {
 	border-radius: 0;
 }
+.img-thumbnail {
+    border: none!important;
+}
 .dropdown-menu .fa.fa-share {
 	color: #fff;
 }
@@ -394,7 +397,7 @@ h6 {
 	color: #e54242;
 }
 .btn.btn-xs.remove {
-	padding: 3px 5px;
+	padding: 15px;
 }
 .cart-icon {
 	background: url('../cart.png') no-repeat scroll 0 0;
@@ -2573,3 +2576,12 @@ input[type="submit"].addtocart {
     padding-top: 12px;
 }
 /*Responcive media end*/
+td.text-center {
+    padding: 0px!important;
+}
+td.text-right.quantity, td.text-right.on-scroll {
+    padding-top: 50px!important;
+}
+a.btn.btn-xs.remove.on-scroll {
+    margin-top: 35px;
+}

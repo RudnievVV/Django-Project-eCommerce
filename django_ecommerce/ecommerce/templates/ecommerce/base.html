@@ -215,9 +215,9 @@
                                 <tr>
                                   <td class="text-center"><a href="{{ cart_product.get_absolute_url }}"><img class="img-thumbnail" src="{{ cart_product.image.url }}" alt="{{ cart_product.title }}"></a></td>
                                   <td class="text-left"><a href="{{ cart_product.get_absolute_url }}">{{ cart_product.title }}</a></td>
-                                  <td class="text-right quality">X{{ cart.session.cart|cart_product_count:cart_product.id }}</td>
-                                  <td class="text-right price-new">{{ cart_product.price }}</td>
-                                  <td class="text-center"><a href="{% url 'cart-remove' cart_product.id %}" type="button" title="Remove" class="btn btn-xs remove"><i class="fa fa-times"></i></a></td>
+                                  <td class="text-right quantity">X{{ cart.session.cart|cart_product_count:cart_product.id }}</td>
+                                  <td class="text-right price-new on-scroll">{{ cart_product.price }}</td>
+                                  <td class="text-center"><a href="{% url 'cart-remove' cart_product.id %}" type="button" title="Remove" class="btn btn-xs remove on-scroll"><i class="fa fa-times"></i></a></td>
                                 </tr>
                           {% endfor %}
                           </tbody>

@@ -203,10 +203,10 @@
                   <div class="show-item">
                     <p>Show</p>
                     <div class="select-item">
-                      <select name="pagination-show-select-dropdown" onchange="this.form.submit()">
-                        <option value="5" {% if pagination_show == 5 %} selected="selected" {% endif %}>5</option>
-                          <option value="10" {% if pagination_show == 10 %} selected="selected" {% endif %}>10</option>
-                          <option value="15" {% if pagination_show == 15 %} selected="selected" {% endif %}>15</option>
+                      <select name="pagination-showlist-select-dropdown" onchange="this.form.submit()">
+                        <option value="5" {% if pagination_show_list == 5 %} selected="selected" {% endif %}>5</option>
+                          <option value="10" {% if pagination_show_list == 10 %} selected="selected" {% endif %}>10</option>
+                          <option value="15" {% if pagination_show_list == 15 %} selected="selected" {% endif %}>15</option>
                       </select>
                       <span class="fa fa-angle-down"></span></div>
                   </div>

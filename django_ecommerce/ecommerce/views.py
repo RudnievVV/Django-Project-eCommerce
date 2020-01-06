@@ -16,64 +16,99 @@ def about(request):
     return render(request, 'ecommerce/about.html', {'title': 'About Us'})
 
 
-def product_list(request, category_slug=None, pagination_sort_by="title", pagination_show=12):
+def product_list(request, category_slug=None, pagination_sort_by="title", pagination_show_grid=12):
     category = None
     categories = Category.objects.all()
     cart_product_form = CartAddProductForm()
 
-    if request.session.get('pagination_sort_by') is not None and request.session.get('pagination_show') is not None:
+    if request.session.get('pagination_sort_by') is not None and request.session.get('pagination_show_grid') is not None:
         pagination_sort_by = request.session.get('pagination_sort_by')
-        pagination_show = request.session.get('pagination_show')
+        pagination_show_grid = request.session.get('pagination_show_grid')
 
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
         if request.method == "POST":
             pagination_sort_by = request.POST.get('pagination-sortby-select-dropdown')
-            pagination_show = int(request.POST.get('pagination-show-select-dropdown'))
+            pagination_show_grid = int(request.POST.get('pagination-showgrid-select-dropdown'))
             products = Product.objects.filter(category=category).order_by(pagination_sort_by)
             products_count = products.count
-            paginator = Paginator(products, pagination_show)
+            paginator = Paginator(products, pagination_show_grid)
         else:
             products = Product.objects.filter(category=category).order_by(pagination_sort_by)
             products_count = products.count
-            paginator = Paginator(products, pagination_show)
+            paginator = Paginator(products, pagination_show_grid)
         page = request.GET.get('page')
         products = paginator.get_page(page)
 
     context = {'category': category, 'categories': categories, 'products': products, 'title': category.title,
                'cart_product_form': cart_product_form, 'products_count': products_count,
-               'pagination_sort_by': pagination_sort_by, 'pagination_show': pagination_show}
+               'pagination_sort_by': pagination_sort_by, 'pagination_show_grid': pagination_show_grid}
 
     request.session['pagination_sort_by'] = pagination_sort_by
-    request.session['pagination_show'] = pagination_show
+    request.session['pagination_show_grid'] = pagination_show_grid
     return render(request, 'ecommerce/product_list_grid.html', context)
 
 
-def product_list_view(request, category_slug, category_view):
+def product_list_view(request, category_slug, category_view, pagination_sort_by="title", pagination_show_grid=12,
+                      pagination_show_list=5):
     categories = Category.objects.all()
     cart_product_form = CartAddProductForm()
     if category_view == 'grid':
         category = get_object_or_404(Category, slug=category_slug)
-        products = Product.objects.filter(category=category).order_by('title')
-        products_count = products.count
-        paginator = Paginator(products, 12)
+
+        if request.session.get('pagination_sort_by') is not None and request.session.get('pagination_show_grid') is not None:
+            pagination_sort_by = request.session.get('pagination_sort_by')
+            pagination_show_grid = request.session.get('pagination_show_grid')
+
+        if request.method == "POST":
+            pagination_sort_by = request.POST.get('pagination-sortby-select-dropdown')
+            pagination_show_grid = int(request.POST.get('pagination-showgrid-select-dropdown'))
+            products = Product.objects.filter(category=category).order_by(pagination_sort_by)
+            products_count = products.count
+            paginator = Paginator(products, pagination_show_grid)
+        else:
+            products = Product.objects.filter(category=category).order_by(pagination_sort_by)
+            products_count = products.count
+            paginator = Paginator(products, pagination_show_grid)
+
         page = request.GET.get('page')
         products = paginator.get_page(page)
 
         context = {'category': category, 'categories': categories, 'products': products, 'title': category.title,
-                   'cart_product_form': cart_product_form, 'products_count': products_count}
+                   'cart_product_form': cart_product_form, 'products_count': products_count,
+                   'pagination_sort_by': pagination_sort_by, 'pagination_show_grid': pagination_show_grid}
+
+        request.session['pagination_sort_by'] = pagination_sort_by
+        request.session['pagination_show_grid'] = pagination_show_grid
         return render(request, 'ecommerce/product_list_grid.html', context)
 
     if category_view == 'list':
         category = get_object_or_404(Category, slug=category_slug)
-        products = Product.objects.filter(category=category).order_by('title')
-        products_count = products.count
-        paginator = Paginator(products, 5)
+
+        if request.session.get('pagination_sort_by') is not None and request.session.get('pagination_show_list') is not None:
+            pagination_sort_by = request.session.get('pagination_sort_by')
+            pagination_show_list = request.session.get('pagination_show_list')
+
+        if request.method == "POST":
+            pagination_sort_by = request.POST.get('pagination-sortby-select-dropdown')
+            pagination_show_list = int(request.POST.get('pagination-showlist-select-dropdown'))
+            products = Product.objects.filter(category=category).order_by(pagination_sort_by)
+            products_count = products.count
+            paginator = Paginator(products, pagination_show_list)
+        else:
+            products = Product.objects.filter(category=category).order_by(pagination_sort_by)
+            products_count = products.count
+            paginator = Paginator(products, pagination_show_list)
+
         page = request.GET.get('page')
         products = paginator.get_page(page)
 
         context = {'category': category, 'categories': categories, 'products': products, 'title': category.title,
-                   'cart_product_form': cart_product_form, 'products_count': products_count}
+                   'cart_product_form': cart_product_form, 'products_count': products_count,
+                   'pagination_sort_by': pagination_sort_by, 'pagination_show_list': pagination_show_list}
+
+        request.session['pagination_sort_by'] = pagination_sort_by
+        request.session['pagination_show_list'] = pagination_show_list
         return render(request, 'ecommerce/product_list_list.html', context)
 
 
@@ -85,18 +120,35 @@ def product_detail(request, id, slug):
     return render(request, 'ecommerce/product_detail.html', context)
 
 
-def main_search(request, category_option, input_value):
+def main_search(request, category_option, input_value, pagination_sort_by="title", pagination_show_grid=12):
     categories = Category.objects.all()
     cart_product_form = CartAddProductForm()
+
+    if request.session.get('pagination_sort_by') is not None and request.session.get('pagination_show_grid') is not None:
+        pagination_sort_by = request.session.get('pagination_sort_by')
+        pagination_show_grid = request.session.get('pagination_show_grid')
+
     if category_option != "All Categories":
         products = Product.objects.filter(Q(category=Category.objects.get(title=category_option)),
-                                          Q(title__icontains=input_value.strip())).order_by('title')
+                                          Q(title__icontains=input_value.strip())).order_by(pagination_sort_by)
     else:
-        products = Product.objects.filter(title__icontains=input_value.strip()).order_by('title')
-    paginator = Paginator(products, 12)
-    products_count = products.count
+        products = Product.objects.filter(title__icontains=input_value.strip()).order_by(pagination_sort_by)
+
+    if request.method == "POST":
+        pagination_sort_by = request.POST.get('pagination-sortby-select-dropdown')
+        pagination_show_grid = int(request.POST.get('pagination-showgrid-select-dropdown'))
+        products_count = products.count
+        paginator = Paginator(products, pagination_show_grid)
+    else:
+        products_count = products.count
+        paginator = Paginator(products, pagination_show_grid)
+
     page = request.GET.get('page')
     products = paginator.get_page(page)
     context = {'products': products, 'categories': categories, 'products_count': products_count,
-               'cart_product_form': cart_product_form, 'title': 'Search Result'}
+               'cart_product_form': cart_product_form, 'title': 'Search Result',
+               'pagination_sort_by': pagination_sort_by, 'pagination_show_grid': pagination_show_grid}
+
+    request.session['pagination_sort_by'] = pagination_sort_by
+    request.session['pagination_show_grid'] = pagination_show_grid
     return render(request, 'ecommerce/main_search.html', context=context)
