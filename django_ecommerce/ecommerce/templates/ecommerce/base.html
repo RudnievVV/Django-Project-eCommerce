@@ -77,16 +77,14 @@
                     <li>
                       <table class="table table-striped">
                         <tbody>
-                          {% for item in cart %}
-                              {% with product=item.product %}
+                          {% for cart_product in cart_products %}
                                 <tr>
-                                  <td class="text-center"><a href="{{ product.get_absolute_url }}"><img class="img-thumbnail" src="{{ product.image.url }}" alt="{{ product.title }}"></a></td>
-                                  <td class="text-left"><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></td>
-                                  <td class="text-right quality">X{{ item.quantity }}</td>
-                                  <td class="text-right price-new">{{ product.price }}</td>
-                                  <td class="text-center"><a href="{% url 'cart-remove' product.id %}" type="button" title="Remove" class="btn btn-xs remove"><i class="fa fa-times"></i></a></td>
+                                  <td class="text-center"><a href="{{ cart_product.get_absolute_url }}"><img class="img-thumbnail" src="{{ cart_product.image.url }}" alt="{{ cart_product.title }}"></a></td>
+                                  <td class="text-left"><a href="{{ cart_product.get_absolute_url }}">{{ cart_product.title }}</a></td>
+                                  <td class="text-right quality">X{{ cart.session.cart|cart_product_count:cart_product.id }}</td>
+                                  <td class="text-right price-new">{{ cart_product.price }}</td>
+                                  <td class="text-center"><a href="{% url 'cart-remove' cart_product.id %}" type="button" title="Remove" class="btn btn-xs remove"><i class="fa fa-times"></i></a></td>
                                 </tr>
-                              {% endwith %}
                           {% endfor %}
                         </tbody>
                       </table>
@@ -213,17 +211,15 @@
                       <li>
                         <table class="table table-striped">
                           <tbody>
-                            {% for item in cart %}
-                                {% with product=item.product %}
-                                  <tr>
-                                    <td class="text-center"><a href="{{ product.get_absolute_url }}"><img class="img-thumbnail" src="{{ product.image.url }}" alt="{{ product.title }}"></a></td>
-                                    <td class="text-left"><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></td>
-                                    <td class="text-right quality">X{{ item.quantity }}</td>
-                                    <td class="text-right price-new">{{ product.price }}</td>
-                                    <td class="text-center"><a href="{% url 'cart-remove' product.id %}" type="button" title="Remove" class="btn btn-xs remove"><i class="fa fa-times"></i></a></td>
-                                  </tr>
-                                {% endwith %}
-                            {% endfor %}
+                            {% for cart_product in cart_products %}
+                                <tr>
+                                  <td class="text-center"><a href="{{ cart_product.get_absolute_url }}"><img class="img-thumbnail" src="{{ cart_product.image.url }}" alt="{{ cart_product.title }}"></a></td>
+                                  <td class="text-left"><a href="{{ cart_product.get_absolute_url }}">{{ cart_product.title }}</a></td>
+                                  <td class="text-right quality">X{{ cart.session.cart|cart_product_count:cart_product.id }}</td>
+                                  <td class="text-right price-new">{{ cart_product.price }}</td>
+                                  <td class="text-center"><a href="{% url 'cart-remove' cart_product.id %}" type="button" title="Remove" class="btn btn-xs remove"><i class="fa fa-times"></i></a></td>
+                                </tr>
+                          {% endfor %}
                           </tbody>
                         </table>
                       </li>

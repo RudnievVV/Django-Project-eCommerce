@@ -229,7 +229,7 @@
                             <ul>
                               <li class="wish"><a href="#"></a></li>
                               <li class="addtocart">
-                                <form action="{% url 'cart-add' product.id %}" method="post">
+                                <form action="{% url 'cart-add' product.id %}" method="POST">
                                   {% csrf_token %}
                                   <div class="do_not_display">{{ cart_product_form }}</div>
                                   <input type="submit" value="Add to cart" class="addtocart">

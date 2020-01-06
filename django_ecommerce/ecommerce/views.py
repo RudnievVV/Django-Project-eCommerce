@@ -9,7 +9,7 @@ def home_page(request):
     new_arrivals_list = Product.objects.filter(available=True).order_by('-created_at')[:7]
     cart_product_form = CartAddProductForm()
     return render(request, 'ecommerce/home.html', {'new_arrivals': new_arrivals_list,
-                                                   'cart_product_form': cart_product_form})
+                                                   'cart_product_form': cart_product_form,})
 
 
 def about(request):
@@ -19,17 +19,11 @@ def about(request):
 def product_list(request, category_slug=None, pagination_sort_by="title", pagination_show=12):
     category = None
     categories = Category.objects.all()
-    products = Product.objects.filter(available=True)
     cart_product_form = CartAddProductForm()
 
     if request.session.get('pagination_sort_by') is not None and request.session.get('pagination_show') is not None:
         pagination_sort_by = request.session.get('pagination_sort_by')
         pagination_show = request.session.get('pagination_show')
-        products = Product.objects.filter(category=category).order_by(pagination_sort_by)
-        products_count = products.count
-        paginator = Paginator(products, pagination_show)
-        page = request.GET.get('page')
-        products = paginator.get_page(page)
 
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)

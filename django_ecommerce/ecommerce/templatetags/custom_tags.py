@@ -64,3 +64,8 @@ def latest_categories():
             if count == 4:
                 break
     return mark_safe(latest_categories_html)
+
+
+@register.filter
+def cart_product_count(value, cart_product_id):
+    return value.get(str(cart_product_id)).get('quantity')
