@@ -289,9 +289,9 @@
 	$(function() {
     	$( "#slider-range" ).slider({
       	range: true,
-      	min: 0,
-      	max: 800,
-      	values: [ 75, 500 ],
+      	min: {{ min_product_price }},
+      	max: {{ max_product_price }},
+      	values: [ {{ min_product_price }}, {{ max_product_price }} ],
       	slide: function( event, ui ) {
         $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
       	}

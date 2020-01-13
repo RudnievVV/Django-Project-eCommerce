@@ -9,7 +9,7 @@ def home_page(request):
     new_arrivals_list = Product.objects.filter(available=True).order_by('-created_at')[:7]
     cart_product_form = CartAddProductForm()
     return render(request, 'ecommerce/home.html', {'new_arrivals': new_arrivals_list,
-                                                   'cart_product_form': cart_product_form,})
+                                                   'cart_product_form': cart_product_form})
 
 
 def about(request):
@@ -40,9 +40,15 @@ def product_list(request, category_slug=None, pagination_sort_by="title", pagina
         page = request.GET.get('page')
         products = paginator.get_page(page)
 
+    max_product_price = int(float(''.join(
+        Product.objects.filter(category=category).order_by('-price').first().price.__str__()[1:].split(','))) + 1)
+    min_product_price = int(float(''.join(
+        Product.objects.filter(category=category).order_by('price').first().price.__str__()[1:].split(','))))
+
     context = {'category': category, 'categories': categories, 'products': products, 'title': category.title,
                'cart_product_form': cart_product_form, 'products_count': products_count,
-               'pagination_sort_by': pagination_sort_by, 'pagination_show_grid': pagination_show_grid}
+               'pagination_sort_by': pagination_sort_by, 'pagination_show_grid': pagination_show_grid,
+               'min_product_price': min_product_price, 'max_product_price': max_product_price}
 
     request.session['pagination_sort_by'] = pagination_sort_by
     request.session['pagination_show_grid'] = pagination_show_grid
@@ -74,9 +80,15 @@ def product_list_view(request, category_slug, category_view, pagination_sort_by=
         page = request.GET.get('page')
         products = paginator.get_page(page)
 
+        max_product_price = int(float(''.join(
+            Product.objects.filter(category=category).order_by('-price').first().price.__str__()[1:].split(','))) + 1)
+        min_product_price = int(float(''.join(
+            Product.objects.filter(category=category).order_by('price').first().price.__str__()[1:].split(','))))
+
         context = {'category': category, 'categories': categories, 'products': products, 'title': category.title,
                    'cart_product_form': cart_product_form, 'products_count': products_count,
-                   'pagination_sort_by': pagination_sort_by, 'pagination_show_grid': pagination_show_grid}
+                   'pagination_sort_by': pagination_sort_by, 'pagination_show_grid': pagination_show_grid,
+                   'min_product_price': min_product_price, 'max_product_price': max_product_price}
 
         request.session['pagination_sort_by'] = pagination_sort_by
         request.session['pagination_show_grid'] = pagination_show_grid
@@ -103,9 +115,15 @@ def product_list_view(request, category_slug, category_view, pagination_sort_by=
         page = request.GET.get('page')
         products = paginator.get_page(page)
 
+        max_product_price = int(float(''.join(
+            Product.objects.filter(category=category).order_by('-price').first().price.__str__()[1:].split(','))) + 1)
+        min_product_price = int(float(''.join(
+            Product.objects.filter(category=category).order_by('price').first().price.__str__()[1:].split(','))))
+
         context = {'category': category, 'categories': categories, 'products': products, 'title': category.title,
                    'cart_product_form': cart_product_form, 'products_count': products_count,
-                   'pagination_sort_by': pagination_sort_by, 'pagination_show_list': pagination_show_list}
+                   'pagination_sort_by': pagination_sort_by, 'pagination_show_list': pagination_show_list,
+                   'min_product_price': min_product_price, 'max_product_price': max_product_price}
 
         request.session['pagination_sort_by'] = pagination_sort_by
         request.session['pagination_show_list'] = pagination_show_list
@@ -131,8 +149,16 @@ def main_search(request, category_option, input_value, pagination_sort_by="title
     if category_option != "All Categories":
         products = Product.objects.filter(Q(category=Category.objects.get(title=category_option)),
                                           Q(title__icontains=input_value.strip())).order_by(pagination_sort_by)
+        max_product_price = int(float(''.join(
+            Product.objects.filter(category=Category.objects.get(title=category_option)).order_by('-price').first().price.__str__()[1:].split(','))) + 1)
+        min_product_price = int(float(''.join(
+            Product.objects.filter(category=Category.objects.get(title=category_option)).order_by('price').first().price.__str__()[1:].split(','))))
     else:
         products = Product.objects.filter(title__icontains=input_value.strip()).order_by(pagination_sort_by)
+        max_product_price = int(float(''.join(
+            Product.objects.all().order_by('-price').first().price.__str__()[1:].split(','))) + 1)
+        min_product_price = int(float(''.join(
+            Product.objects.all().order_by('price').first().price.__str__()[1:].split(','))))
 
     if request.method == "POST":
         pagination_sort_by = request.POST.get('pagination-sortby-select-dropdown')
@@ -147,7 +173,8 @@ def main_search(request, category_option, input_value, pagination_sort_by="title
     products = paginator.get_page(page)
     context = {'products': products, 'categories': categories, 'products_count': products_count,
                'cart_product_form': cart_product_form, 'title': 'Search Result',
-               'pagination_sort_by': pagination_sort_by, 'pagination_show_grid': pagination_show_grid}
+               'pagination_sort_by': pagination_sort_by, 'pagination_show_grid': pagination_show_grid,
+               'min_product_price': min_product_price, 'max_product_price': max_product_price}
 
     request.session['pagination_sort_by'] = pagination_sort_by
     request.session['pagination_show_grid'] = pagination_show_grid
