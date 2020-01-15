@@ -56,41 +56,50 @@
                   {% endfor %}
                 </ul>
               </div>
-              <div class="sidebar-widget Price-range">
-                <div class="sidebar-title">
-                  <label for="amount">Price range:</label>
-                  <input type="text" id="amount" readonly style="border:0; color:#4d90fe; font-weight:bold;">
-                  <div id="slider-range"></div>
-                </div>
+              <form name="price-range-form" method="POST">
+                {% csrf_token %}
+                <div class="sidebar-widget Price-range">
+                  <div class="sidebar-title">
+                    <label for="amount">Price range:</label>
+                    <input type="text" id="amount" readonly style="border:0; color:#4d90fe; font-weight:bold;">
+                    <div id="slider-range"></div>
+                    <input id="slider-price-min-value" name="slider-price-min-value">
+                    <input id="slider-price-max-value" name="slider-price-max-value">
+                    <a id="price-range-confirm" class="btn btn-info">Confirm</a>
+                    {% if slider_price_min_value != min_product_price or slider_price_max_value != max_product_price %}
+                      <br><br><a id="price-range-reset" class="btn btn-danger">Reset</a>
+                    {% endif %}
+                  </div>
               </div>
+              </form>
               <div class="sidebar-widget Shop-by-block">
                 <div class="sidebar-title">
                   <h4>Shop by</h4>
                 </div>
                 <ul class="title-toggle">
                   <li class="category">
-                    <h5><a href="grid-view.html">Category</a></h5>
+                    <h5><a href="#">Category</a></h5>
                     <ul>
-                      <li><a href="grid-view.html">Bags 2 </a></li>
-                      <li><a href="grid-view.html">Clothing x2 2 (0)</a></li>
-                      <li><a href="grid-view.html">Lingerie 2 (0) </a></li>
+                      <li><a href="#">Bags 2 </a></li>
+                      <li><a href="#">Clothing x2 2 (0)</a></li>
+                      <li><a href="#">Lingerie 2 (0) </a></li>
                     </ul>
                   </li>
                   <li class="color">
-                    <h5><a href="grid-view.html">Color</a></h5>
+                    <h5><a href="#">Color</a></h5>
                     <ul>
-                      <li><a href="grid-view.html">red (2) </a></li>
-                      <li><a href="grid-view.html">blue (5)</a></li>
-                      <li><a href="grid-view.html">yelow (0) </a></li>
-                      <li><a href="grid-vier.html">black (4)</a></li>
+                      <li><a href="#">red (2) </a></li>
+                      <li><a href="#">blue (5)</a></li>
+                      <li><a href="#">yelow (0) </a></li>
+                      <li><a href="#">black (4)</a></li>
                     </ul>
                   </li>
                   <li class="manufacture">
-                    <h5><a href="grid-view.html">Manufacture</a></h5>
+                    <h5><a href="#">Manufacture</a></h5>
                     <ul>
-                      <li><a href="grid-view.html">Bags 2 </a></li>
-                      <li><a href="grid-view.html">Clothing x2 2 (0)</a></li>
-                      <li><a href="grid-view.html">Lingerie 2 (0) </a></li>
+                      <li><a href="#">Bags 2 </a></li>
+                      <li><a href="#">Clothing x2 2 (0)</a></li>
+                      <li><a href="#">Lingerie 2 (0) </a></li>
                     </ul>
                   </li>
                 </ul>
@@ -178,7 +187,11 @@
                   {% if products_count > 1 %}
                     There is <strong>{{ products_count }}</strong> products in Category!
                   {% else %}
-                    There is only <strong>one</strong> product in Category!
+                    {% if not products_count %}
+                      No products!
+                    {% else %}
+                      There is only <strong>one</strong> product in Category!
+                    {% endif %}
                   {% endif %}
                 </div>
               </div>
@@ -205,7 +218,7 @@
                         <select name="pagination-showgrid-select-dropdown" onchange="this.form.submit()">
                           <option value="12" {% if pagination_show_grid == 12 %} selected="selected" {% endif %}>12</option>
                           <option value="18" {% if pagination_show_grid == 18 %} selected="selected" {% endif %}>18</option>
-                          <option value="24" {% if pagination_show_gtrid == 24 %} selected="selected" {% endif %}>24</option>
+                          <option value="24" {% if pagination_show_grid == 24 %} selected="selected" {% endif %}>24</option>
                         </select>
                         <span class="fa fa-angle-down"></span></div>
                       </form>
@@ -279,20 +292,30 @@
     </div>
   </div>
 </div>
-<!-- jQuery (price shorting) --> 
+<!-- jQuery (price sorting) -->
 <script>
 	$(function() {
-    	$( "#slider-range" ).slider({
+    	$("#slider-range").slider({
       	range: true,
       	min: {{ min_product_price }},
       	max: {{ max_product_price }},
-      	values: [ {{ min_product_price }}, {{ max_product_price }} ],
-      	slide: function( event, ui ) {
-        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+      	values: [{{ slider_price_min_value }}, {{ slider_price_max_value }}],
+      	slide: function(event, ui) {
+        $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
       	}
     	});
-    	$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-      	" - $" + $( "#slider-range" ).slider( "values", 1 ) );
+    	$("#amount").val("$" + $("#slider-range").slider("values", 0) +
+      	" - $" + $("#slider-range").slider("values", 1));
   		});
-</script> 
+</script>
+<!-- price shorting reset button -->
+<script>
+  $(document).ready(function(){
+    $("#price-range-reset").click(function(){
+        $("#slider-price-min-value").val({{ min_product_price }});
+        $("#slider-price-max-value").val({{ max_product_price }});
+        document.getElementsByName("price-range-form")[0].submit();
+    });
+});
+</script>
 {% endblock content %}

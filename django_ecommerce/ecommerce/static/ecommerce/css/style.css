@@ -2585,3 +2585,6 @@ td.text-right.quantity, td.text-right.on-scroll {
 a.btn.btn-xs.remove.on-scroll {
     margin-top: 35px;
 }
+#slider-price-min-value, #slider-price-max-value {
+    display: none;
+}

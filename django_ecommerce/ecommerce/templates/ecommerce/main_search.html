@@ -69,28 +69,28 @@
                 </div>
                 <ul class="title-toggle">
                   <li class="category">
-                    <h5><a href="grid-view.html">Category</a></h5>
+                    <h5><a href="#">Category</a></h5>
                     <ul>
-                      <li><a href="grid-view.html">Bags 2 </a></li>
-                      <li><a href="grid-view.html">Clothing x2 2 (0)</a></li>
-                      <li><a href="grid-view.html">Lingerie 2 (0) </a></li>
+                      <li><a href="#">Bags 2 </a></li>
+                      <li><a href="#">Clothing x2 2 (0)</a></li>
+                      <li><a href="#">Lingerie 2 (0) </a></li>
                     </ul>
                   </li>
                   <li class="color">
-                    <h5><a href="grid-view.html">Color</a></h5>
+                    <h5><a href="#">Color</a></h5>
                     <ul>
-                      <li><a href="grid-view.html">red (2) </a></li>
-                      <li><a href="grid-view.html">blue (5)</a></li>
-                      <li><a href="grid-view.html">yelow (0) </a></li>
-                      <li><a href="grid-vier.html">black (4)</a></li>
+                      <li><a href="#">red (2) </a></li>
+                      <li><a href="#">blue (5)</a></li>
+                      <li><a href="#">yelow (0) </a></li>
+                      <li><a href="#">black (4)</a></li>
                     </ul>
                   </li>
                   <li class="manufacture">
-                    <h5><a href="grid-view.html">Manufacture</a></h5>
+                    <h5><a href="#">Manufacture</a></h5>
                     <ul>
-                      <li><a href="grid-view.html">Bags 2 </a></li>
-                      <li><a href="grid-view.html">Clothing x2 2 (0)</a></li>
-                      <li><a href="grid-view.html">Lingerie 2 (0) </a></li>
+                      <li><a href="#">Bags 2 </a></li>
+                      <li><a href="#">Clothing x2 2 (0)</a></li>
+                      <li><a href="#">Lingerie 2 (0) </a></li>
                     </ul>
                   </li>
                 </ul>
@@ -195,7 +195,7 @@
                             <select name="pagination-showgrid-select-dropdown" onchange="this.form.submit()">
                               <option value="12" {% if pagination_show_grid == 12 %} selected="selected" {% endif %}>12</option>
                               <option value="18" {% if pagination_show_grid == 18 %} selected="selected" {% endif %}>18</option>
-                              <option value="24" {% if pagination_show_gtrid == 24 %} selected="selected" {% endif %}>24</option>
+                              <option value="24" {% if pagination_show_grid == 24 %} selected="selected" {% endif %}>24</option>
                             </select>
                             <span class="fa fa-angle-down"></span></div>
                         </div>
@@ -277,20 +277,20 @@
     </div>
   </div>
 </div>
-<!-- jQuery (price shorting) --> 
+<!-- jQuery (price sorting) -->
 <script>
 	$(function() {
-    	$( "#slider-range" ).slider({
+    	$("#slider-range").slider({
       	range: true,
       	min: {{ min_product_price }},
       	max: {{ max_product_price }},
-      	values: [ {{ min_product_price }}, {{ max_product_price }} ],
-      	slide: function( event, ui ) {
-        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+      	values: [{{ min_product_price }}, {{ max_product_price }}],
+      	slide: function(event, ui) {
+        $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
       	}
     	});
-    	$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-      	" - $" + $( "#slider-range" ).slider( "values", 1 ) );
+    	$("#amount").val("$" + $("#slider-range").slider("values", 0) +
+      	" - $" + $("#slider-range").slider("values", 1));
   		});
 </script>
 {% endblock content %}
