@@ -2588,3 +2588,10 @@ a.btn.btn-xs.remove.on-scroll {
 #slider-price-min-value, #slider-price-max-value {
     display: none;
 }
+#default-amount {
+    display: flex;
+}
+#default-amount-value {
+    color: #0250d1;
+    margin-left: 3px;
+}
