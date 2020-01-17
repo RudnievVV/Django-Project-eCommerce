@@ -84,36 +84,62 @@ def product_list_view(request, category_slug, category_view, pagination_sort_by=
                       pagination_show_list=5):
     categories = Category.objects.all()
     cart_product_form = CartAddProductForm()
+    category = get_object_or_404(Category, slug=category_slug)
+
+    max_product_price = int(float(''.join(
+        Product.objects.filter(category=category).order_by('-price').first().price.__str__()[1:].split(','))) + 1)
+    min_product_price = int(float(''.join(
+        Product.objects.filter(category=category).order_by('price').first().price.__str__()[1:].split(','))))
+
+    if request.method == "POST" and request.POST.get('slider-price-min-value') is not None and \
+            request.POST.get('slider-price-max-value') is not None:
+        slider_price_min_value = request.POST.get('slider-price-min-value')
+        slider_price_max_value = request.POST.get('slider-price-max-value')
+    else:
+        if request.session.get(category.title) is not None and \
+                request.session.get(category.title).get('slider_price_min_value') is not None and \
+                request.session.get(category.title).get('slider_price_max_value') is not None:
+            slider_price_min_value = request.session[category.title]['slider_price_min_value']
+            slider_price_max_value = request.session[category.title]['slider_price_max_value']
+        else:
+            slider_price_min_value = min_product_price
+            slider_price_max_value = max_product_price
+
+    request.session.setdefault(category.title, {})
+    request.session[category.title]['slider_price_min_value'] = slider_price_min_value
+    request.session[category.title]['slider_price_max_value'] = slider_price_max_value
+
     if category_view == 'grid':
-        category = get_object_or_404(Category, slug=category_slug)
 
         if request.session.get('pagination_sort_by') is not None and request.session.get('pagination_show_grid') is not None:
             pagination_sort_by = request.session.get('pagination_sort_by')
             pagination_show_grid = request.session.get('pagination_show_grid')
 
-        if request.method == "POST":
+        if request.method == "POST" and \
+                request.POST.get('pagination-sortby-select-dropdown') is not None and \
+                request.POST.get('pagination-showgrid-select-dropdown') is not None:
             pagination_sort_by = request.POST.get('pagination-sortby-select-dropdown')
             pagination_show_grid = int(request.POST.get('pagination-showgrid-select-dropdown'))
-            products = Product.objects.filter(category=category).order_by(pagination_sort_by)
+            products = Product.objects.filter(Q(category=category),
+                                              Q(price__range=[slider_price_min_value,
+                                                              slider_price_max_value])).order_by(pagination_sort_by)
             products_count = products.count
             paginator = Paginator(products, pagination_show_grid)
         else:
-            products = Product.objects.filter(category=category).order_by(pagination_sort_by)
+            products = Product.objects.filter(Q(category=category),
+                                              Q(price__range=[slider_price_min_value,
+                                                              slider_price_max_value])).order_by(pagination_sort_by)
             products_count = products.count
             paginator = Paginator(products, pagination_show_grid)
 
         page = request.GET.get('page')
         products = paginator.get_page(page)
 
-        max_product_price = int(float(''.join(
-            Product.objects.filter(category=category).order_by('-price').first().price.__str__()[1:].split(','))) + 1)
-        min_product_price = int(float(''.join(
-            Product.objects.filter(category=category).order_by('price').first().price.__str__()[1:].split(','))))
-
         context = {'category': category, 'categories': categories, 'products': products, 'title': category.title,
                    'cart_product_form': cart_product_form, 'products_count': products_count,
                    'pagination_sort_by': pagination_sort_by, 'pagination_show_grid': pagination_show_grid,
-                   'min_product_price': min_product_price, 'max_product_price': max_product_price}
+                   'min_product_price': min_product_price, 'max_product_price': max_product_price,
+                   'slider_price_min_value': int(slider_price_min_value), 'slider_price_max_value': int(slider_price_max_value)}
 
         request.session['pagination_sort_by'] = pagination_sort_by
         request.session['pagination_show_grid'] = pagination_show_grid
@@ -126,14 +152,20 @@ def product_list_view(request, category_slug, category_view, pagination_sort_by=
             pagination_sort_by = request.session.get('pagination_sort_by')
             pagination_show_list = request.session.get('pagination_show_list')
 
-        if request.method == "POST":
+        if request.method == "POST" and \
+                request.POST.get('pagination-sortby-select-dropdown') is not None and \
+                request.POST.get('pagination-showlist-select-dropdown') is not None:
             pagination_sort_by = request.POST.get('pagination-sortby-select-dropdown')
             pagination_show_list = int(request.POST.get('pagination-showlist-select-dropdown'))
-            products = Product.objects.filter(category=category).order_by(pagination_sort_by)
+            products = Product.objects.filter(Q(category=category),
+                                              Q(price__range=[slider_price_min_value,
+                                                              slider_price_max_value])).order_by(pagination_sort_by)
             products_count = products.count
             paginator = Paginator(products, pagination_show_list)
         else:
-            products = Product.objects.filter(category=category).order_by(pagination_sort_by)
+            products = Product.objects.filter(Q(category=category),
+                                              Q(price__range=[slider_price_min_value,
+                                                              slider_price_max_value])).order_by(pagination_sort_by)
             products_count = products.count
             paginator = Paginator(products, pagination_show_list)
 
@@ -148,7 +180,8 @@ def product_list_view(request, category_slug, category_view, pagination_sort_by=
         context = {'category': category, 'categories': categories, 'products': products, 'title': category.title,
                    'cart_product_form': cart_product_form, 'products_count': products_count,
                    'pagination_sort_by': pagination_sort_by, 'pagination_show_list': pagination_show_list,
-                   'min_product_price': min_product_price, 'max_product_price': max_product_price}
+                   'min_product_price': min_product_price, 'max_product_price': max_product_price,
+                   'slider_price_min_value': int(slider_price_min_value), 'slider_price_max_value': int(slider_price_max_value)}
 
         request.session['pagination_sort_by'] = pagination_sort_by
         request.session['pagination_show_list'] = pagination_show_list
