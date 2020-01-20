@@ -56,13 +56,27 @@
                   {% endfor %}
                 </ul>
               </div>
-              <div class="sidebar-widget Price-range">
-                <div class="sidebar-title">
-                  <label for="amount">Price range:</label>
-                  <input type="text" id="amount" readonly style="border:0; color:#4d90fe; font-weight:bold;">
-                  <div id="slider-range"></div>
+              <form name="price-range-form" method="POST">
+                {% csrf_token %}
+                <div class="sidebar-widget Price-range">
+                  <div class="sidebar-title">
+                    {% if slider_price_min_value != min_product_price or slider_price_max_value != max_product_price %}
+                      <div id="default-amount"><strong>Default range:
+                        <div id="default-amount-value">${{ min_product_price }} - ${{ max_product_price }}</strong></div>
+                      </div>
+                    {% endif %}
+                    <label for="amount">Price range:</label>
+                    <input type="text" id="amount" readonly style="border:0; color:#4d90fe; font-weight:bold;">
+                    <div id="slider-range"></div>
+                    <input id="slider-price-min-value" name="slider-price-min-value">
+                    <input id="slider-price-max-value" name="slider-price-max-value">
+                    <a id="price-range-confirm" class="btn btn-info">Confirm</a>
+                    {% if slider_price_min_value != min_product_price or slider_price_max_value != max_product_price %}
+                      <br><br><a id="price-range-reset" class="btn btn-danger">Reset</a>
+                    {% endif %}
+                  </div>
                 </div>
-              </div>
+              </form>
               <div class="sidebar-widget Shop-by-block">
                 <div class="sidebar-title">
                   <h4>Shop by</h4>
@@ -284,7 +298,7 @@
       	range: true,
       	min: {{ min_product_price }},
       	max: {{ max_product_price }},
-      	values: [{{ min_product_price }}, {{ max_product_price }}],
+      	values: [{{ slider_price_min_value }}, {{ slider_price_max_value }}],
       	slide: function(event, ui) {
         $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
       	}
@@ -292,5 +306,15 @@
     	$("#amount").val("$" + $("#slider-range").slider("values", 0) +
       	" - $" + $("#slider-range").slider("values", 1));
   		});
+</script>
+<!-- price shorting reset button -->
+<script>
+  $(document).ready(function(){
+    $("#price-range-reset").click(function(){
+        $("#slider-price-min-value").val({{ min_product_price }});
+        $("#slider-price-max-value").val({{ max_product_price }});
+        document.getElementsByName("price-range-form")[0].submit();
+    });
+});
 </script>
 {% endblock content %}
