@@ -2518,9 +2518,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33ffffff', e
 input[type="submit"].addtocart {
     padding: 5px 15px;
 }
-#id_username, #id_password, #id_email, #id_password1, #id_password2, #id_first_name, #id_last_name {
-    width: 20%!important;
-}
 #navbar-on-scroll {
     background-color: #d9121f;
     position: fixed;
@@ -2594,4 +2591,115 @@ a.btn.btn-xs.remove.on-scroll {
 #default-amount-value {
     color: #0250d1;
     margin-left: 3px;
+}
+a:hover,a:focus{
+    text-decoration: none;
+    outline: none;
+}
+.vertical-tab{
+    font-family: 'Lato', sans-serif;
+    display: table;
+}
+.vertical-tab .nav-tabs{
+    display: table-cell;
+    width: 28%;
+    min-width: 28%;
+    vertical-align: top;
+    border: none;
+    border-right: 5px solid #404040;
+}
+.vertical-tab .nav-tabs li{
+   float: none;
+   vertical-align: top;
+}
+.vertical-tab .nav-tabs li a{
+    color: #404040;
+    background: transparent;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 10px 15px;
+    margin: 0 15px 10px 0;
+    border-radius: 0;
+    border: none;
+    position: relative;
+    transition: all 0.5s ease 0s;
+}
+.vertical-tab .nav-tabs li a:hover,
+.vertical-tab .nav-tabs li.active a,
+.vertical-tab .nav-tabs li.active a:hover{
+    color: #fc1b1b;
+    background-color: transparent;
+    border: none;
+}
+.vertical-tab .nav-tabs li a:before,
+.vertical-tab .nav-tabs li a:after{
+    content: '';
+    height: 100%;
+    width: 0;
+    border: 2px solid #404040;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.3s ease 0s;
+}
+.vertical-tab .nav-tabs li a:after{
+    background-color: #404040;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    border-color: transparent;
+    transform: translateY(-50%);
+    top: 50%;
+    left: auto;
+    right: -23px;
+}
+.vertical-tab .nav-tabs li a:hover:before,
+.vertical-tab .nav-tabs li.active a:before{
+    width: 100%;
+    opacity: 1;
+}
+.vertical-tab .nav-tabs li a:hover:after,
+.vertical-tab .nav-tabs li.active a:after{
+    background-color: #fc1b1b;
+    border: 2px solid #fff;
+    box-shadow: 0 0 5px #000;
+    opacity: 1;
+    transform: translateY(-50%) scale(2);
+}
+.vertical-tab .tab-content{
+    color: #404040;
+    background-color: rgba(0,0,0,0.07);
+    font-size: 15px;
+    text-align: justify;
+    letter-spacing: 1px;
+    line-height: 24px;
+    padding: 15px 25px;
+    border-radius: 0 20px 20px 0;
+    display: table-cell;
+    position: relative;
+}
+.vertical-tab .tab-content h3{
+    font-weight: 600;
+    margin: 0 0 5px 0;
+}
+@media only screen and (max-width: 479px){
+    .vertical-tab .nav-tabs{
+        width: 100%;
+        display: block;
+        border: none;
+    }
+    .vertical-tab .nav-tabs li a{
+        padding: 7px 20px;
+        margin: 0 0 10px 0;
+    }
+    .vertical-tab .nav-tabs li a:after{ right: 10px; }
+    .vertical-tab .tab-content{
+        padding: 20px 15px 10px;
+        border-radius: 0;
+        display: block;
+    }
+    .vertical-tab .tab-content h3{ font-size: 18px; }
 }
