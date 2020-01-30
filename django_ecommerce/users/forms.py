@@ -24,3 +24,9 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['image']
+
+
+class ProfileUpdateAddressForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['company', 'phone_number', 'address_1', 'address_2', 'city', 'country', 'postal_code', 'fax']
