@@ -6,14 +6,6 @@ from PIL import Image
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='images/user/default.jpg', upload_to='images/user/profile_pics')
-    company = models.CharField(max_length=100, blank=True)
-    phone_number = models.CharField(max_length=25, blank=True)
-    address_1 = models.CharField(max_length=150, blank=True)
-    address_2 = models.CharField(max_length=150, blank=True)
-    city = models.CharField(max_length=20, blank=True)
-    country = models.CharField(max_length=20, blank=True)
-    postal_code = models.CharField(max_length=15, blank=True)
-    fax = models.CharField(max_length=20, blank=True)
 
     def __str__(self):
         return f'{self.user.username} Profile'
@@ -26,3 +18,15 @@ class Profile(models.Model):
             output_size = (300, 300)
             img.thumbnail(output_size)
             img.save(self.image.path)
+
+
+class UserAddress(models.Model):
+    user = models.ForeignKey(User, related_name='user_addresses', on_delete=models.CASCADE)
+    company = models.CharField(max_length=100, blank=True)
+    phone_number = models.CharField(max_length=25, blank=True)
+    address_1 = models.CharField(max_length=150, blank=True)
+    address_2 = models.CharField(max_length=150, blank=True)
+    city = models.CharField(max_length=20, blank=True)
+    country = models.CharField(max_length=20, blank=True)
+    postal_code = models.CharField(max_length=15, blank=True)
+    fax = models.CharField(max_length=20, blank=True)

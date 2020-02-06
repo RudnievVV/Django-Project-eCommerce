@@ -2671,7 +2671,6 @@ a:hover,a:focus{
 }
 .vertical-tab .tab-content{
     color: #404040;
-    background-color: rgba(0,0,0,0.07);
     font-size: 15px;
     text-align: justify;
     letter-spacing: 1px;
@@ -2702,4 +2701,7 @@ a:hover,a:focus{
         display: block;
     }
     .vertical-tab .tab-content h3{ font-size: 18px; }
+}
+.user-address-remove:hover, .user-address-update:hover {
+	background-color: #ddd;
 }
