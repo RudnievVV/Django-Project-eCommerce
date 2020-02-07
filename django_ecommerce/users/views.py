@@ -12,7 +12,11 @@ def register(request):
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get('username')
+            user = form.save(commit=False)
+            user.save()
+            user_profile = Profile()
+            user_profile.user = user
+            user_profile.save()
             messages.success(request, 'Your account has been created! You are now able to log in!')
             return redirect('login')
     else:
