@@ -45,9 +45,6 @@
                     <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">Info</a></li>
                     <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">Addresses</a></li>
                     <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">Orders</a></li>
-                <div class="form-group">
-                  <button class="btn btn-info" type="submit">Update</button>
-                </div>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content tabs">
@@ -61,7 +58,9 @@
                         <fieldset class="form-group">
                           {{ u_form|crispy }}
                         </fieldset>
+                        <button class="btn btn-info" type="submit" name="update_user">Update</button>
                     </div>
+              </form>
                     <div role="tabpanel" class="tab-pane fade" id="Section2">
                         <h3>My Addresses</h3>
                         <br>
@@ -91,24 +90,26 @@
                                 <td>{{ user_address.city }}</td>
                                 <td>{{ user_address.postal_code }}</td>
                                 <td><a href="#" type="button" title="Update" class="btn btn-xs remove user-address-update"><i class="fa fa-edit"></i></a></td>
-                                <td><a href="#" type="button" title="Remove" class="btn btn-xs remove user-address-remove"><i class="fa fa-times"></i></a></td>
+                                <td><a href="{% url 'address-delete' id=user_address.id %}" type="button" title="Remove" class="btn btn-xs remove user-address-remove"><i class="fa fa-times"></i></a></td>
                               </tr>
                           {% endfor %}
                             </tbody>
                           </table>
                         {% endif %}
                         <hr><br>
-                        <fieldset class="form-group">
-                          <h3>Fullfill to save the new address</h3>
-                          {{ u_address_form|crispy }}
-                        </fieldset>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <fieldset class="form-group">
+                              {{ u_address_form|crispy }}
+                              <button class="btn btn-info" type="submit" name="add_address">Add new address</button>
+                            </fieldset>
+                        </form>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="Section3">
                         <h3>My Orders</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p>
                     </div>
                 </div>
-              </form>
             </div>
         </div>
     </div>

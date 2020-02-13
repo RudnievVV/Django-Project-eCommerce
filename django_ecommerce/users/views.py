@@ -28,15 +28,19 @@ def register(request):
 def profile(request):
     general_current_user_img = User.objects.get(username=request.user.profile.user)
     general_current_user_img = general_current_user_img.profile.image.url
-    if request.method == "POST":
+    if request.method == "POST" and request.POST.get('update_user') is not None:
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
-        u_address_form = UserUpdateAddressForm(request.POST, instance=request.user)
-        if u_form.is_valid() and p_form.is_valid() and u_address_form.is_valid():
+        if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             if general_current_user_img != '/media/images/user/default.jpg' and general_current_user_img != request.user.profile.image.url:
                 os.unlink(os.path.join(MEDIA_ROOT, 'images', 'user', 'profile_pics', general_current_user_img.split('/')[-1]))
             p_form.save()
+            messages.success(request, f'Your account has been updated!')
+            return redirect('my-account')
+    elif request.method == "POST" and request.POST.get('add_address') is not None:
+        u_address_form = UserUpdateAddressForm(request.POST, instance=request.user)
+        if u_address_form.is_valid():
             u_address_form = UserAddress()
             u_address_form.user = request.user
             u_address_form.company = request.POST.get('company')
@@ -48,9 +52,8 @@ def profile(request):
             u_address_form.postal_code = request.POST.get('postal_code')
             u_address_form.fax = request.POST.get('fax')
             u_address_form.save()
-            messages.success(request, f'Your account has been updated!')
+            messages.success(request, f'You added the new address!')
             return redirect('my-account')
-
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
@@ -64,3 +67,13 @@ def profile(request):
     }
 
     return render(request, 'users/profile.html', context)
+
+
+@login_required
+def delete_address(request, id=id):
+    if len(User.objects.get(id=request.user.id).user_addresses.filter(id=id)):
+        User.objects.get(id=request.user.id).user_addresses.get(id=id).delete()
+        messages.success(request, f'You deleted the address!')
+    else:
+        messages.warning(request, f'Something went wrong!')
+    return redirect('my-account')
