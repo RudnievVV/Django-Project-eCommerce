@@ -2705,3 +2705,6 @@ a:hover,a:focus{
 .user-address-remove:hover, .user-address-update:hover {
 	background-color: #ddd;
 }
+.login-field {
+	width: fit-content;
+}

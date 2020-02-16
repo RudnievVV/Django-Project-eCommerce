@@ -1,5 +1,6 @@
 import os
-from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -77,3 +78,26 @@ def delete_address(request, id=id):
     else:
         messages.warning(request, f'Something went wrong!')
     return redirect('my-account')
+
+
+@login_required
+def update_address(request, id=id):
+    if request.method == "POST":
+        if len(User.objects.get(id=request.user.id).user_addresses.filter(id=id)):
+            address = get_object_or_404(User.objects.get(id=request.user.id).user_addresses, pk=id)
+            form = UserUpdateAddressForm(request.POST, instance=address)
+            if form.is_valid():
+                form.save()
+                messages.success(request, f'You updated the address!')
+                return redirect('my-account')
+        else:
+            return HttpResponse(400, "Something went wrong!")
+    else:
+        address = get_object_or_404(User.objects.get(id=request.user.id).user_addresses, pk=id)
+        form = UserUpdateAddressForm(instance=address)
+
+        context = {
+            'form': form,
+            'title': 'Adress Update',
+        }
+        return render(request, 'users/address_update.html', context)

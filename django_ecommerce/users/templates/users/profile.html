@@ -89,7 +89,7 @@
                                 <td>{{ user_address.country }}</td>
                                 <td>{{ user_address.city }}</td>
                                 <td>{{ user_address.postal_code }}</td>
-                                <td><a href="#" type="button" title="Update" class="btn btn-xs remove user-address-update"><i class="fa fa-edit"></i></a></td>
+                                <td><a href="{% url 'address-update' id=user_address.id %}" type="button" title="Update" class="btn btn-xs remove user-address-update"><i class="fa fa-edit"></i></a></td>
                                 <td><a href="{% url 'address-delete' id=user_address.id %}" type="button" title="Remove" class="btn btn-xs remove user-address-remove"><i class="fa fa-times"></i></a></td>
                               </tr>
                           {% endfor %}

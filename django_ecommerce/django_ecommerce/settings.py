@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'widget_tweaks',
     'users.apps.UsersConfig',
     'cart.apps.CartConfig',
     'djmoney',
@@ -142,4 +143,3 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 # EMAIL_HOST_USER = # Uncomment and Enter email address
 # EMAIL_HOST_PASSWORD = # Uncomment and Enter email host password
-

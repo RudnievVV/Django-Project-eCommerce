@@ -39,25 +39,9 @@
 		<form method="POST">
 			{% csrf_token %}
 			<fieldset class="form-group">
-				<legend class="">Log In</legend>
-        <label for="id_username" class="control-label  requiredField">Username<span class="asteriskField">*</span> </label>
-        {% render_field form.username class+="form-control login-field" %}
-        <br>
-        <label for="id_password" class="control-label  requiredField">Password<span class="asteriskField">*</span> </label>
-        {% render_field form.password class+="form-control login-field" %}
+        {{ form|crispy }}
 			</fieldset>
-			<div class="form-group">
-				<button class="btn btn-info" type="submit">Log In</button>
-				<br>
-				<small class="text muted">
-					<a href="{% url 'password_reset' %}">Forgot Password?</a>
-				</small>
-			</div>
+      <button class="btn btn-info" type="submit">Update</button>
 		</form>
-		<div class="border-top pt-3">
-			<small class="text-muted">
-				Need An Account? <a href="{% url 'register' %}">Sign Up Now</a>
-			</small>			
-		</div>
 	</div>
 {% endblock content %}
