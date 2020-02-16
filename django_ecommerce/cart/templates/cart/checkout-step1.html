@@ -65,7 +65,7 @@
         </div>
         <form class="billing-info">
           <div class="products-order checkout billing-information">
-            {% if user.is_authenticated %}
+            {% if user.is_authenticated and user.user_addresses.all %}
               <div class="checkbox">
                 <label>
                   <input class="addresses-toggle" type="checkbox" data-target="#my-billing-addresses" data-toggle="collapse" value="">
@@ -76,29 +76,25 @@
                   <table class="table table-bordered">
                     <tbody>
                       <tr>
-                        <th>Name</th>
+                        <th>Company</th>
                         <th>Address</th>
                         <th>Country</th>
+                        <th>City</th>
+                        <th>Postal Code</th>
                         <th>Phone</th>
-                        <th>Company</th>
                         <th></th>
                       </tr>
-                      <tr>
-                        <td>Luther kevin</td>
-                        <td>Main street 2nd floor 205 city Area</td>
-                        <td>France</td>
-                        <td>+421 233 256 256</td>
-                        <td>webtrap.</td>
-                        <td><a class="btn btn-primary btn-sm">Select</a></td>
-                      </tr>
-                      <tr>
-                        <td>Martine Doe</td>
-                        <td>58, 2nd floor Miami lorem ipsum  main street</td>
-                        <td>United States</td>
-                        <td>+235 568 985 689</td>
-                        <td>webtrap design</td>
-                        <td><a class="btn btn-primary btn-sm">Select</a></td>
-                      </tr>
+                      {% for user_address in user.user_addresses.all %}
+                        <tr>
+                          <td>{{ user_address.company }}</td>
+                          <td>{{ user_address.address_1 }}</td>
+                          <td>{{ user_address.country }}</td>
+                          <td>{{ user_address.city }}</td>
+                          <td>{{ user_address.postal_code }}</td>
+                          <td>{{ user_address.phone_number }}</td>
+                          <td class="checkout-select-button"><a class="btn btn-primary btn-sm">Select</a></td>
+                        </tr>
+                      {% endfor %}
                     </tbody>
                   </table>
                 </div>

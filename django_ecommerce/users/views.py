@@ -98,6 +98,6 @@ def update_address(request, id=id):
 
         context = {
             'form': form,
-            'title': 'Adress Update',
+            'title': 'Address Update',
         }
         return render(request, 'users/address_update.html', context)

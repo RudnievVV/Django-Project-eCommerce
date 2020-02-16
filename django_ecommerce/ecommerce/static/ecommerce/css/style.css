@@ -2708,3 +2708,6 @@ a:hover,a:focus{
 .login-field {
 	width: fit-content;
 }
+.checkout-select-button {
+	text-align: center;
+}
