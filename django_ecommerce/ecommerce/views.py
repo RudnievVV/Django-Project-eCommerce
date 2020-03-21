@@ -200,17 +200,26 @@ def main_search(request, category_option, input_value, pagination_sort_by="title
         pagination_show_grid = request.session.get('pagination_show_grid')
 
     if category_option != "All Categories":
-        max_product_price = int(float(''.join(
-            Product.objects.filter(Q(category=Category.objects.get(title=category_option)),
-                                   Q(title__icontains=input_value.strip())).order_by('-price').first().price.__str__()[1:].split(','))) + 1)
-        min_product_price = int(float(''.join(
-            Product.objects.filter(Q(category=Category.objects.get(title=category_option)),
-                                   Q(title__icontains=input_value.strip())).order_by('price').first().price.__str__()[1:].split(','))))
+        if Product.objects.filter(Q(category=Category.objects.get(title=category_option)),
+                                  Q(title__icontains=input_value.strip())).order_by('-price').first() is not None:
+            max_product_price = int(float(''.join(
+                Product.objects.filter(Q(category=Category.objects.get(title=category_option)),
+                                       Q(title__icontains=input_value.strip())).order_by('-price').first().price.__str__()[1:].split(','))) + 1)
+            min_product_price = int(float(''.join(
+                Product.objects.filter(Q(category=Category.objects.get(title=category_option)),
+                                       Q(title__icontains=input_value.strip())).order_by('price').first().price.__str__()[1:].split(','))))
+        else:
+            max_product_price = 0
+            min_product_price = 0
     else:
-        max_product_price = int(float(''.join(
-            Product.objects.filter(title__icontains=input_value.strip()).order_by('-price').first().price.__str__()[1:].split(','))) + 1)
-        min_product_price = int(float(''.join(
-            Product.objects.filter(title__icontains=input_value.strip()).order_by('price').first().price.__str__()[1:].split(','))))
+        if Product.objects.filter(title__icontains=input_value.strip()).order_by('-price').first() is not None:
+            max_product_price = int(float(''.join(
+                Product.objects.filter(title__icontains=input_value.strip()).order_by('-price').first().price.__str__()[1:].split(','))) + 1)
+            min_product_price = int(float(''.join(
+                Product.objects.filter(title__icontains=input_value.strip()).order_by('price').first().price.__str__()[1:].split(','))))
+        else:
+            max_product_price = 0
+            min_product_price = 0
 
     if request.method == "POST" and request.POST.get('slider-price-min-value') is not None and \
             request.POST.get('slider-price-max-value') is not None:
