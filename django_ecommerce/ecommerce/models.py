@@ -38,7 +38,7 @@ class Product(models.Model):
     stock = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
-    image = models.ImageField(upload_to='images/product/%Y/%m/%d', default='images/product/product_default.jpg')
+    main_image = models.ImageField(upload_to='images/product/%Y/%m/%d', default='images/product/product_default.jpg')
 
     class Meta:
         ordering = ('title', )
@@ -49,3 +49,11 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('product-detail', args=[self.id, self.slug])
+
+
+class ProductAdditionalImage(models.Model):
+    product = models.ForeignKey(Product, related_name='product_images', default=None, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='images/product/%Y/%m/%d', default='images/product/product_default.jpg')
+
+    def __str__(self):
+        return f"{self.product.title} | {self.product.sku} | {self.id}"

@@ -160,7 +160,11 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="sp-loading"><img src="{{ MEDIA_URL }}images/sp-loading.gif" alt=""><br></div>
-                  <div class="sp-wrap"> <a class="item" href="{{ product.image.url }}"><img src="{{ product.image.url }}" alt=""></a> <a class="item" href="{{ product.image.url }}"><img src="{{ product.image.url }}" alt=""></a><a class="item" href="{{ product.image.url }}"><img src="{{ product.image.url }}" alt=""></a><a class="item" href="{{ product.image.url }}"><img src="{{ product.image.url }}" alt=""></a><a class="item" href="{{ product.image.url }}"><img src="{{ product.image.url }}" alt=""></a> </div>
+                  <div class="sp-wrap"> <a class="item" href="{{ product.main_image.url }}"><img src="{{ product.main_image.url }}" alt="">
+                    {% for product_image in product.product_images.all %}
+                      <a class="item" href="{{ product_image.image.url }}"><img src="{{ product_image.image.url }}" alt=""></a>
+                    {% endfor %}
+                  </div>
                 </div>
                 <div class="col-md-6">
                   <div class="product-detail-content">

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product
+from .models import Category, Product, ProductAdditionalImage
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -18,3 +18,10 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Product, ProductAdmin)
+
+
+class ProductAdditionalImageAdmin(admin.ModelAdmin):
+    list_filter = ['product']
+
+
+admin.site.register(ProductAdditionalImage, ProductAdditionalImageAdmin)
