@@ -31,8 +31,20 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
-    def category_products_count(self):
-        return Product.objects.filter(category=self).count()
+    def products_inside(self):
+        products_inside_category = SimpleProduct.objects.filter(category=self, available=True).first() 
+        """here is needed to list all existing product models
+        based on BaseProduct abstract model in order to have correctly counted
+        products inside category""" 
+        if products_inside_category:
+            return True
+        return False
+
+    def products_inside_sub_categories(self): # needed to define display or not triangle-down in megamenu on front-end
+        for category in Category.objects.filter(category=self).sub_categories.all():
+            if category.products_inside():
+                return True
+        return False
 
     def get_absolute_url(self):
         return reverse('category-page', args=[self.slug])
@@ -48,6 +60,7 @@ class BaseProduct(models.Model):
     sku = models.CharField(max_length=100, unique=True)
     price = MoneyField(max_digits=14, decimal_places=2, default_currency='USD')
     available = models.BooleanField(default=True)
+    new = models.BooleanField(default=True) # that field will be used to show or not "new" label on product
     on_sale = models.BooleanField(default=False)
     stock = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(default=timezone.now)
@@ -66,7 +79,7 @@ class BaseProduct(models.Model):
 
     def new_status(self, days_to_display_new_status=settings.DAYS_TO_DEFINE_PRODUCT_NEW_STATUS):
         time_after_creation = datetime.datetime.now(timezone.utc) - self.created_at
-        if time_after_creation.days <= days_to_display_new_status:
+        if time_after_creation.days <= days_to_display_new_status and self.new:
             return True
         return False
 

@@ -276,7 +276,7 @@ for (let productLabels of productOnImageLabelItems){
 	if (productLabels.childElementCount >= 2){
 		for (let child of productLabels.children){
 			if (child.classList.contains('tag-sale')){
-				child.classList.add('tag_sale_moved_left')
+				child.classList.add('tag-sale-moved-left')
 			}
 		}
 	}

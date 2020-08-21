@@ -86,11 +86,11 @@
 				<ul class="main-menu">
 					<li><a href="{% url 'ecommerce-home' %}">Home</a></li>
 					{% for category in all_categories %}
-						{% if category.root_category %}
-                            {% if not category.sub_categories.count %}
-                                <li><a href="{{ category.get_absolute_url }}">{{ category.title }}
+						{% if category.root_category and category.products_inside %}
+							{% if category.sub_categories.count and category.products_inside_sub_categories %}
+								<li class="triangle-down"><a href="{{ category.get_absolute_url }}">{{ category.title }} 
                             {% else %}
-                                <li class="triangle-down"><a href="{{ category.get_absolute_url }}">{{ category.title }}
+								<li><a href="{{ category.get_absolute_url }}">{{ category.title }}
                             {% endif %}
                             {% if category.new %}
                                 <span class="new">New</span>
@@ -98,8 +98,10 @@
                             </a>
                             {% if category.sub_categories.count %}
                                 <ul class="sub-menu">
-                                    {% for sub_category in category.sub_categories.all %}
-                                    <li><a href="{{ sub_category.get_absolute_url }}">{{ sub_category.title }}</a></li>
+									{% for sub_category in category.sub_categories.all %}
+										{% if sub_category.products_inside %}
+											<li><a href="{{ sub_category.get_absolute_url }}">{{ sub_category.title }}</a></li>
+										{% endif %}
                                     {% endfor %}
                                 </ul>
 							{% endif %}
