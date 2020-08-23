@@ -41,7 +41,7 @@ class Category(models.Model):
         return False
 
     def products_inside_sub_categories(self): # needed to define display or not triangle-down in megamenu on front-end
-        for category in Category.objects.filter(category=self).sub_categories.all():
+        for category in Category.objects.get(category=self.id).sub_categories.all():
             if category.products_inside():
                 return True
         return False
