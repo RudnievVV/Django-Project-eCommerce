@@ -54,7 +54,7 @@ coverage.xml
 # Django stuff:
 *.log
 local_settings.py
-db.sqlite3
+django_ecommerce/db.sqlite3
 migrations/
 
 # Flask stuff:
@@ -108,4 +108,4 @@ venv.bak/
 idea/
 
 # VS CODE
-vscode/
+.vscode/
