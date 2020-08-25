@@ -1409,6 +1409,7 @@ ol {
 
 .price-range-wrap .range-slider .price-input input:nth-child(2) {
 	float: right;
+	text-align: end;
 }
 
 .fw-color-choose,

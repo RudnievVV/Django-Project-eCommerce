@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404
 from django.conf import settings
 from .models import Category, SimpleProduct
 from itertools import chain
+from math import ceil
 
 
 def category_defining(category_slug: str):
@@ -14,6 +15,17 @@ def category_products_defining(category_slug: str):
     result_list = chain(SimpleProduct.objects.filter(category=category))
 
     return result_list
+
+
+def category_product_max_price_defining(category_slug: str):
+    category = category_defining(category_slug)
+    max_category_product_price = ceil(
+        sorted(
+            chain(SimpleProduct.objects.filter(category=category).order_by('price')[:1]),
+            key=lambda product: product.price, reverse=True)[0].price.amount
+            )
+
+    return str(max_category_product_price)
 
 
 def latest_products_defining(latest_products_count=settings.LATEST_PRODUCTS_COUNT):
