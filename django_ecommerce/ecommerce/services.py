@@ -9,6 +9,13 @@ def category_defining(category_slug: str):
     return get_object_or_404(Category, slug=category_slug)
 
 
+def category_products_defining(category_slug: str):
+    category = category_defining(category_slug)
+    result_list = chain(SimpleProduct.objects.filter(category=category))
+
+    return result_list
+
+
 def latest_products_defining(latest_products_count=settings.LATEST_PRODUCTS_COUNT):
     result_list = sorted(
         chain(SimpleProduct.objects.order_by('-created_at')[:latest_products_count]),

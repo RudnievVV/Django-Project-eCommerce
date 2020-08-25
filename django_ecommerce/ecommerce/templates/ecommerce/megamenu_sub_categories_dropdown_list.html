@@ -1,0 +1,16 @@
+{% if sub_category.products_inside %}
+    {% if sub_category.products_inside_sub_categories %}
+        <li class="triangle-right">
+            <a href="{{ sub_category.get_absolute_url }}">{{ sub_category.title }}</a>
+            <ul class="dropdown-sub-menu">
+                {% if sub_category.sub_categories %}
+                    {% for sub_category in sub_category.sub_categories.all %}
+                        {% include "ecommerce/megamenu_sub_categories_dropdown_list.html" %}
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </li>
+    {% else %}
+        <li><a href="{{ sub_category.get_absolute_url }}">{{ sub_category.title }}</a></li>
+    {% endif %}
+{% endif %}

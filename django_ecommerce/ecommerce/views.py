@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .services import category_defining, latest_products_defining
+from .services import category_defining, category_products_defining, latest_products_defining
 
 
 def home_page(request):
@@ -19,6 +19,14 @@ def category_page(request, category_slug=None):
     # category defining: start 
     category = category_defining(category_slug)
     # category defining: end
+    # category products defining: start
+    category_products = category_products_defining(category_slug)
+    #category products defining: end
+    
+    return render(request, 'ecommerce/category.html', {
+                                                        'category': category,
+                                                        'category_products': category_products,
+                                                        })
 
 
 def product_detail(request, sku=None):

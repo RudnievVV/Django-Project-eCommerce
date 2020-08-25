@@ -41,7 +41,7 @@ class Category(models.Model):
         return False
 
     def products_inside_sub_categories(self): # needed to define display or not triangle-down in megamenu on front-end
-        for category in Category.objects.get(category=self.id).sub_categories.all():
+        for category in Category.objects.get(id=self.id).sub_categories.all():
             if category.products_inside():
                 return True
         return False
@@ -58,10 +58,11 @@ class BaseProduct(models.Model):
     description = models.TextField(blank=True)
     description_short = models.TextField(max_length=100, blank=True)
     sku = models.CharField(max_length=100, unique=True)
+    brand = models.CharField(max_length=30, unique=False, default='Undefined')
     price = MoneyField(max_digits=14, decimal_places=2, default_currency='USD')
     available = models.BooleanField(default=True)
     new = models.BooleanField(default=True) # that field will be used to show or not "new" label on product
-    on_sale = models.BooleanField(default=False)
+    on_sale = models.BooleanField(default=False) # that field will be used to show or not "on sale" label on product
     stock = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)

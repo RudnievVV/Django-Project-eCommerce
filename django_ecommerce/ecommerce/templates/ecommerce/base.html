@@ -12,7 +12,7 @@
 	<meta name="keywords" content="python, django, eCommerce, creative, html, RudnievVV@gmail.com, RudnievVVPython.gmail.com, RudnievVV">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Favicon -->
-	<link href="{{ MEDIA_URL }}img/favicon.ico" rel="shortcut icon"/>
+	<link href="{% static 'css/favicon.ico' %}" rel="shortcut icon"/>
 
 	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
@@ -48,7 +48,7 @@
 				<div class="row">
 					<div class="col-lg-2 text-center text-lg-left">
 						<!-- logo -->
-						<a href="./index.html" class="site-logo">
+						<a href="{% url 'ecommerce-home' %}" class="site-logo">
 							<img src="{{ MEDIA_URL }}img/logo.png" alt="">
 						</a>
 					</div>
@@ -87,7 +87,7 @@
 					<li><a href="{% url 'ecommerce-home' %}">Home</a></li>
 					{% for category in all_categories %}
 						{% if category.root_category and category.products_inside %}
-							{% if category.sub_categories.count and category.products_inside_sub_categories %}
+							{% if category.products_inside_sub_categories %}
 								<li class="triangle-down"><a href="{{ category.get_absolute_url }}">{{ category.title }} 
                             {% else %}
 								<li><a href="{{ category.get_absolute_url }}">{{ category.title }}
@@ -96,13 +96,11 @@
                                 <span class="new">New</span>
                             {% endif %}
                             </a>
-                            {% if category.sub_categories.count %}
+                            {% if category.products_inside_sub_categories %}
                                 <ul class="sub-menu">
 									{% for sub_category in category.sub_categories.all %}
-										{% if sub_category.products_inside %}
-											<li><a href="{{ sub_category.get_absolute_url }}">{{ sub_category.title }}</a></li>
-										{% endif %}
-                                    {% endfor %}
+										{% include "ecommerce/megamenu_sub_categories_dropdown_list.html" %}
+									{% endfor %}
                                 </ul>
 							{% endif %}
 						{% endif %}

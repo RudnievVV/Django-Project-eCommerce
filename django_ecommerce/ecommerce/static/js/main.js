@@ -244,6 +244,27 @@ for (let i=0; i < megaMenuItems.length; i++) {
 
 
 /*------------------
+	Mega Menu Click to open/close child categories dropdown inside dropdown
+--------------------*/
+const megaMenuDropdownItems = document.getElementsByClassName('triangle-right');
+for (let i=0; i < megaMenuDropdownItems.length; i++) {
+	if (megaMenuDropdownItems[i].classList.contains('slicknav_parent')) {
+		megaMenuDropdownItems[i].classList.remove('triangle-right')
+		i -= 1
+		continue
+	}
+	megaMenuDropdownItems[i].addEventListener('mouseover', function(event) {
+		megaMenuDropdownItems[i].getElementsByClassName('dropdown-sub-menu')[0].setAttribute("style", "visibility: visible; opacity: 1;")
+		}
+	)
+	megaMenuDropdownItems[i].addEventListener('mouseout', function(event) {
+		megaMenuDropdownItems[i].getElementsByClassName('dropdown-sub-menu')[0].setAttribute("style", "visibility: hidden; opacity: 0;")
+		}
+	)
+};
+
+
+/*------------------
 	Mobile Mega Menu Click to open link inside categories dropdown
 --------------------*/
 const mobileMegaMenuItems = document.getElementsByClassName('slicknav_item slicknav_row')
@@ -253,6 +274,8 @@ for (let i=0; i < mobileMegaMenuItems.length; i++) {
 		location.href = mobileLink
 	})
 };
+
+
 /*------------------
 	Mobile Mega Menu Click changing background inside categories dropdown for closed dropdown
 --------------------*/
@@ -267,6 +290,8 @@ for (let mobileDropdown of mobileMegaMenuItems) {
 		}
 	})
 };
+
+
 /*------------------
 	Adjusting products label "on sale" and "new". If they both are present on product, then "on sale" will be displayed on left and "new" on right.
 	If only one label on product, then it will be displayed on right
