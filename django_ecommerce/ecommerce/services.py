@@ -17,20 +17,24 @@ def category_products_defining(category_slug: str):
     return result_list
 
 
-def category_product_max_price_defining(category_slug: str):
+def category_products_max_price_defining(category_slug: str):
     category = category_defining(category_slug)
-    max_category_product_price = ceil(
+    max_category_products_price = ceil(
         sorted(
-            chain(SimpleProduct.objects.filter(category=category).order_by('price')[:1]),
+            chain(
+                SimpleProduct.objects.filter(category=category).order_by('price')[:1],
+                ),
             key=lambda product: product.price, reverse=True)[0].price.amount
             )
 
-    return str(max_category_product_price)
+    return str(max_category_products_price)
 
 
 def latest_products_defining(latest_products_count=settings.LATEST_PRODUCTS_COUNT):
     result_list = sorted(
-        chain(SimpleProduct.objects.order_by('-created_at')[:latest_products_count]),
+        chain(
+            SimpleProduct.objects.order_by('-created_at')[:latest_products_count],
+            ),
         key=lambda product: product.created_at, reverse=True)
         
     return result_list[:latest_products_count]

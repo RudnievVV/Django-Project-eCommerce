@@ -297,10 +297,10 @@ for (let mobileDropdown of mobileMegaMenuItems) {
 	If only one label on product, then it will be displayed on right
 --------------------*/
 const productOnImageLabelItems = document.getElementsByClassName('product-on-image-labels')
-for (let productLabels of productOnImageLabelItems){
+for (let productLabels of productOnImageLabelItems) {
 	if (productLabels.childElementCount >= 2){
-		for (let child of productLabels.children){
-			if (child.classList.contains('tag-sale')){
+		for (let child of productLabels.children) {
+			if (child.classList.contains('tag-sale')) {
 				child.classList.add('tag-sale-moved-left')
 			}
 		}
