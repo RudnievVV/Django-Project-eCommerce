@@ -40,12 +40,6 @@ class Category(models.Model):
             return True
         return False
 
-    def products_inside_sub_categories(self): # needed to define display or not triangle-down in megamenu on front-end
-        for category in Category.objects.get(id=self.id).sub_categories.all():
-            if category.products_inside():
-                return True
-        return False
-
     def get_absolute_url(self):
         return reverse('category-page', args=[self.slug])
 

@@ -19,13 +19,16 @@ def category_products_defining(category_slug: str):
 
 def category_products_max_price_defining(category_slug: str):
     category = category_defining(category_slug)
-    max_category_products_price = ceil(
-        sorted(
-            chain(
-                SimpleProduct.objects.filter(category=category).order_by('price')[:1],
-                ),
-            key=lambda product: product.price, reverse=True)[0].price.amount
-            )
+    if category.products_inside():
+        max_category_products_price = ceil(
+            sorted(
+                chain(
+                    SimpleProduct.objects.filter(category=category).order_by('price')[:1],
+                    ),
+                key=lambda product: product.price, reverse=True)[0].price.amount
+                )
+    else:
+         max_category_products_price = 0
 
     return str(max_category_products_price)
 
