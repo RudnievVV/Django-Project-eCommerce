@@ -23,7 +23,7 @@ def category_page(request, category_slug=None):
     category_products = category_products_defining(category_slug)
     # category products defining: end
     # category products price maximum amount defining: start
-    category_products_max_price = category_product_max_price_defining(category_slug)
+    category_products_max_price = category_products_max_price_defining(category_slug)
     # category products price maximum amount defining: end
 
     return render(request, 'ecommerce/category.html', {
