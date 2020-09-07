@@ -1,4 +1,5 @@
 {% extends 'ecommerce/base.html' %}
+{% load custom_tags %}
 {% block content %}
     <!-- Page info -->
 	<div class="page-top-info">
@@ -18,30 +19,6 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3 order-2 order-lg-1">
-					<div class="filter-widget">
-						<h2 class="fw-title">Categories</h2>
-						<ul class="category-menu">
-							<li><a href="#">Woman wear</a>
-								<ul class="sub-menu">
-									<li><a href="#">Midi Dresses <span>(2)</span></a></li>
-									<li><a href="#">Maxi Dresses<span>(56)</span></a></li>
-									<li><a href="#">Prom Dresses<span>(36)</span></a></li>
-									<li><a href="#">Little Black Dresses <span>(27)</span></a></li>
-									<li><a href="#">Mini Dresses<span>(19)</span></a></li>
-								</ul>
-							</li>
-							<li><a href="#">Man Wear</a>
-								<ul class="sub-menu">
-									<li><a href="#">Midi Dresses <span>(2)</span></a></li>
-									<li><a href="#">Maxi Dresses<span>(56)</span></a></li>
-									<li><a href="#">Prom Dresses<span>(36)</span></a></li>
-								</ul></li>
-							<li><a href="#">Children</a></li>
-							<li><a href="#">Bags & Purses</a></li>
-							<li><a href="#">Eyewear</a></li>
-							<li><a href="#">Footwear</a></li>
-						</ul>
-					</div>
 					<div class="filter-widget mb-0">
 						<h2 class="fw-title">refine by</h2>
 						<div class="price-range-wrap">
@@ -168,7 +145,11 @@
                                         <p>{{ product.title }}</p>
                                     </div>
                                 </div>
-                            </div>
+							</div>
+						{% empty %}
+							<p>No Products for {{ category.title }} Category<br>
+								Return to <a href="{% url 'ecommerce-home' %}">Home Page</a>
+							</p>
                         {% endfor %}
 						<div class="text-center w-100 pt-3">
 							<button class="site-btn sb-line sb-dark">LOAD MORE</button>

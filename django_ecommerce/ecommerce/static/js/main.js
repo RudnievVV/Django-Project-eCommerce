@@ -31,15 +31,7 @@ $(window).on('load', function() {
 	/*------------------
 		Category menu
 	--------------------*/
-	$('.category-menu > li').hover( function(e) {
-		$(this).addClass('active');
-		e.preventDefault();
-	});
-	$('.category-menu').mouseleave( function(e) {
-		$('.category-menu li').removeClass('active');
-		e.preventDefault();
-	});
-
+	
 
 	/*------------------
 		Background Set

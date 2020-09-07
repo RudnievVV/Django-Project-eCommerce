@@ -19,9 +19,11 @@ def category_page(request, category_slug=None):
     # category defining: start 
     category = category_defining(category_slug)
     # category defining: end
+
     # category products defining: start
     category_products = category_products_defining(category_slug)
     # category products defining: end
+    
     # category products price maximum amount defining: start
     category_products_max_price = category_products_max_price_defining(category_slug)
     # category products price maximum amount defining: end

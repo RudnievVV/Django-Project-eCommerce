@@ -14,7 +14,7 @@ def product_additional_image_directory_path(instance, filename): # needed to def
 
 
 class Category(models.Model):
-    """Category that is assigned to product"""
+    """category that can be assigned to product"""
     title = models.CharField(max_length=150, db_index=True)
     slug = models.SlugField(max_length=150, unique=True, null=True, db_index=True)
     new = models.BooleanField(default=True) # used to define if to show "new" label on front-end or not
@@ -45,7 +45,7 @@ class Category(models.Model):
 
 
 class BaseProduct(models.Model):
-    """Abstract Base Product model"""
+    """abstract Base Product model"""
     category = models.ForeignKey(Category, related_name='category', on_delete=models.CASCADE)
     title = models.CharField(max_length=100, db_index=True)
     slug = models.SlugField(max_length=100, null=True, db_index=True)
@@ -80,12 +80,12 @@ class BaseProduct(models.Model):
 
 
 class SimpleProduct(BaseProduct):
-    """Simple product model"""
+    """simple product model"""
     type = models.CharField(max_length=20, default='Simple')
 
 
 class SimpleProductAdditionalImage(models.Model):
-    """Product additional image"""
+    """product additional image"""
     product = models.ForeignKey(SimpleProduct, related_name='product_images', on_delete=models.CASCADE)
     image = models.ImageField(upload_to=product_additional_image_directory_path, default=settings.PRODUCT_DEFAULT_IMAGE)
 
