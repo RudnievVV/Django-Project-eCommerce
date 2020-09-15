@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
 from django.conf import settings
+from django.http import Http404
 from .models import Category, SimpleProduct
 from itertools import chain
 from math import ceil
@@ -47,3 +48,17 @@ def latest_products_defining(latest_products_count=settings.LATEST_PRODUCTS_COUN
         key=lambda product: product.created_at, reverse=True)
         
     return result_list[:latest_products_count]
+
+
+def product_defining(sku: str):
+    """function to define product through all products models or throw 404 if no found product"""
+    product = chain(
+            SimpleProduct.objects.filter(sku=sku),
+            )
+    product = list(product)
+    if product:
+        product = product[0] # sku is unique value in DB, as result there will be only 1 found product across all products models, that's why we select first object from the list
+    else:
+        raise Http404
+
+    return product

@@ -144,3 +144,6 @@ DAYS_TO_DEFINE_PRODUCT_NEW_STATUS = 7
 
 # Used to define how many products to display in latest block on 'ecommerce-home' template
 LATEST_PRODUCTS_COUNT = 5
+
+# Products templates
+SIMPLE_PRODUCT_TEMPLATE = 'ecommerce/simple_product.html'

@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from .services import category_defining, category_products_defining, category_products_max_price_defining, latest_products_defining
+from django.conf import settings
+from django.http import Http404, HttpResponse
+from .services import category_defining, category_products_defining, category_products_max_price_defining, latest_products_defining, product_defining
 
 
 def home_page(request):
@@ -35,6 +37,20 @@ def category_page(request, category_slug=None):
                                                         })
 
 
-def product_detail(request, sku=None):
+def product_page(request, sku=None):
     """rendering single product page"""
-    pass
+    # product defining: start
+    product = product_defining(sku)
+    # product defining: end
+
+    # product type template defining: start
+    product_template = ""
+    if product.type == "Simple":
+        product_template = settings.SIMPLE_PRODUCT_TEMPLATE
+    else:
+        raise Http404
+    # product type template defining: end
+
+    return render(request, product_template, {
+                                                'product': product
+                                                })

@@ -100,7 +100,7 @@
 								<div class="tag-sale">ON SALE</div>
 							{% endif %}
 						</div>
-						<img src="{{ MEDIA_URL }}{{ product.main_image }}" alt="{{ product.title }}">
+						<a href="{{ product.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{ product.main_image }}" alt="{{ product.title }}"></a>
 						<div class="pi-links">
 							<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
 							<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>

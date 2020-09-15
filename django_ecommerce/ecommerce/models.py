@@ -70,7 +70,7 @@ class BaseProduct(models.Model):
         return f"{self.sku} - {self.title}"
 
     def get_absolute_url(self):
-        return reverse('product-detail', args=[self.sku])
+        return reverse('product-page', args=[self.sku])
 
     def new_status(self, days_to_display_new_status=settings.DAYS_TO_DEFINE_PRODUCT_NEW_STATUS):
         time_after_creation = datetime.datetime.now(timezone.utc) - self.created_at
