@@ -109,3 +109,6 @@ idea/
 
 # VS CODE
 .vscode/
+
+# Project product images
+**/img/product/*/
