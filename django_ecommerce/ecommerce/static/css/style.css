@@ -1506,39 +1506,6 @@ ol {
 	color: #414141;
 }
 
-.product-pic-zoom {
-	margin-bottom: 35px;
-}
-
-.product-thumbs-track {
-	width: 1200px;
-}
-
-.product-thumbs .pt {
-	width: 116px;
-	height: 116px;
-	float: left;
-	margin-right: 31px;
-	overflow: hidden;
-	cursor: pointer;
-	position: relative;
-}
-
-.product-thumbs .pt:last-child {
-	margin-right: 0;
-}
-
-.product-thumbs .pt.active:after {
-	position: absolute;
-	content: "";
-	width: 100%;
-	height: 100%;
-	left: 0;
-	top: 0;
-	border: 2px solid #f51167;
-	z-index: 1;
-}
-
 .product-details .p-title {
 	font-size: 18px;
 	font-weight: 700;

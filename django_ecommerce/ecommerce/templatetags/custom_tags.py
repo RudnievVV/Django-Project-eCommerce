@@ -50,3 +50,15 @@ def _megamenu_subcategory_subcategories(sub_category: Category):
         sub_categories_html += f'<li><a href="{ sub_category.get_absolute_url() }">{ sub_category.title }</a></li>'
 
     return sub_categories_html
+
+
+@register.simple_tag
+def product_page_thumbnail_images(product_additional_images: list):
+    """creating html code with thumbnail block of product additional images"""
+    thumbnail_block_html = ''
+    for thumbnail_number in range(len(product_additional_images)):
+        thumbnail_block_html += f'''<div class="column">
+									<img class="demo cursor" src="{ product_additional_images[thumbnail_number].image.url }" onclick="currentSlide({ thumbnail_number + 2 })" alt={ product_additional_images[thumbnail_number].product.title }">
+								</div>'''
+        
+    return mark_safe(thumbnail_block_html)

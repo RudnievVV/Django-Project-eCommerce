@@ -1,5 +1,6 @@
 {% extends 'ecommerce/base.html' %}
 {% load static %}
+{% load custom_tags %}
 {% block content %}
 	<!-- Page info -->
 	<div class="page-top-info">
@@ -22,15 +23,30 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-6">
-					<div class="product-pic-zoom">
-						<img class="product-big-img" src="{{ MEDIA_URL }}{{ product.main_image }}" alt="{{ product.title }}">
-					</div>
-					<div class="product-thumbs" tabindex="1" style="overflow: hidden; outline: none;">
-						<div class="product-thumbs-track">
-							<div class="pt active" data-imgbigurl="{{ MEDIA_URL }}{{ product.main_image }}"><img src="{{ MEDIA_URL }}{{ product.main_image }}" alt="{{ product.title }}"></div>
-							{% for product_image in product.product_images.all %}
-								<div class="pt" data-imgbigurl="{{ MEDIA_URL }}{{ product_image.image }}"><img src="{{ MEDIA_URL }}{{ product_image.image }}" alt="{{ product.title }}"></div>
-							{% endfor %}
+					<div class='container'>
+					<!-- Container for the image gallery -->
+						<!-- Full-width images -->
+						<div class="mySlides">
+							<img src="{{ MEDIA_URL }}{{ product.main_image }}">
+						</div>
+						{% for product_image in product.product_images.all %}
+							<div class="mySlides">
+								<img src="{{ MEDIA_URL }}{{ product_image.image }}">
+							</div>
+						{% endfor %}
+						<!-- Next and previous buttons -->
+						{% if product.product_images.all %}
+							<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+							<a class="next" onclick="plusSlides(1)">&#10095;</a>
+						{% endif %}
+						<!-- Thumbnail images -->
+						<div class="flex product-thumnbails">
+							<div class="column">
+								<img class="demo cursor" src="{{ MEDIA_URL }}{{ product.main_image }}" onclick="currentSlide(1)" alt="{{ product.title }}">
+							</div>
+							{% if product.product_images.all %}
+								{% product_page_thumbnail_images product.product_images.all %} <!-- needed to correctly assign number to onclick function "currentSlide" to make js works correctly w/o additional code -->
+							{% endif %}
 						</div>
 					</div>
 				</div>
