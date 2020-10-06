@@ -98,11 +98,14 @@
 							<label for="xxl-size">42</label>
 						</div>
 					</div>
-					<div class="quantity">
-						<p>Quantity</p>
-                        <div class="pro-qty"><input type="text" value="1"></div>
-                    </div>
-					<a href="#" class="site-btn">SHOP NOW</a>
+					<form action="{% url 'cart-add' product.id %}" method="post">
+						{% csrf_token %}
+						<div class="quantity">
+							<p>Quantity</p>
+							<div class="pro-qty">{{ cart_product_form.quantity }}</div>
+						</div>
+                        <input class="site-btn" type="submit" value="SHOP NOW" class="btn btn-default">
+                      </form>
 					<div id="accordion" class="accordion-area">
 						<div class="panel">
 							<div class="panel-header" id="headingOne">
@@ -228,5 +231,6 @@
 			</div>
 		</div>
 	</section>
+	<script src="{% static 'js/product-page-image-gallery.js' %}"></script>
 	<!-- RELATED PRODUCTS section end -->
 {% endblock content %}

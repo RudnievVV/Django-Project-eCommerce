@@ -51,7 +51,7 @@ def latest_products_defining(latest_products_count=settings.LATEST_PRODUCTS_COUN
 
 
 def product_defining(sku: str):
-    """function to define product through all products models or throw 404 if no found product"""
+    """function to define product through all products models or throw 404 if no found product based on sku"""
     product = chain(
             SimpleProduct.objects.filter(sku=sku),
             )

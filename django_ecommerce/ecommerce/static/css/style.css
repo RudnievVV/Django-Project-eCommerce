@@ -881,7 +881,7 @@ ol {
 	border-radius: 60px;
 	font-size: 18px;
 	line-height: 18px;
-	padding-top: 9px;
+	padding-top: 8px;
 	overflow: hidden;
 	color: #000;
 	position: relative;
@@ -2157,6 +2157,9 @@ ol {
 	.tag-sale.tag-sale-moved-left {
 		right: 70%;
 	}
+	.minicart {
+		width: 200%;
+	}
 }
 
 @media (max-width: 1350px) {
@@ -2193,6 +2196,9 @@ ol {
 	}
 	.tag-sale.tag-sale-moved-left {
 		right: 70%;
+	}
+	.minicart {
+		width: 200%;
 	}
 }
 
@@ -2255,6 +2261,9 @@ ol {
 	}
 	.tag-sale.tag-sale-moved-left {
 		right: 64%;
+	}
+	.minicart {
+		width: 200%;
 	}
 }
 
@@ -2415,4 +2424,40 @@ ol {
 	background-repeat: no-repeat, repeat;
 	background-position: 75% 50%;
 	background-size: .65em auto, 100%;
-  }
+}
+
+.minicart-button, .homepage-add-to-cart {
+	border: none;
+    background: none;
+    cursor: pointer;
+}
+
+/* remove Arrows/Spinners for input */
+/* Chrome, Safari, Edge, Opera */
+.pro-qty input::-webkit-outer-spin-button,
+.pro-qty input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.pro-qty input[type=number] {
+	-moz-appearance: textfield;
+}
+
+.minicart p {
+	text-align: center;
+}
+
+.message {
+	width: 50%;
+    margin-left: 25%;
+}
+
+.display-none {
+	display: none;
+}
+
+form.homepage-form-add-to-cart {
+	display: inline-block;
+}

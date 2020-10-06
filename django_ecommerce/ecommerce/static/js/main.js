@@ -172,11 +172,11 @@ $(window).on('load', function() {
 		if ($button.hasClass('inc')) {
 			var newVal = parseFloat(oldValue) + 1;
 		} else {
-			// Don't allow decrementing below zero
-			if (oldValue > 0) {
+			// Don't allow decrementing below 1
+			if (oldValue > 1) {
 				var newVal = parseFloat(oldValue) - 1;
 			} else {
-				newVal = 0;
+				newVal = 1;
 			}
 		}
 		$button.parent().find('input').val(newVal);

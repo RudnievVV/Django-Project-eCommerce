@@ -70,12 +70,28 @@
                                     <a href="#">Sign</a> In or <a href="#">Create Account</a>
                                 {% endif %}
 							</div>
-							<div class="up-item">
+							<div class="up-item dropdown">
 								<div class="shopping-card">
 									<i class="flaticon-bag"></i>
-									<span>0</span>
+									<span>{{ cart|length }}</span>
 								</div>
-								<a href="#">Shopping Cart</a>
+								<button class="minicart-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shopping Cart</button>
+								<div class="dropdown-menu minicart" aria-labelledby="dropdownMenuButton">
+									<table>
+										<tbody>
+											{% for cart_product in cart_products %}
+												<tr>
+													<td><a href="{{ cart_product.get_absolute_url }}"><img class="img-thumbnail" src="{{ cart_product.main_image.url }}" alt="{{ cart_product.title }}"></a></td>
+													<td>X{{ cart.session.cart|cart_product_count:cart_product.id }}</td>
+													<td>{{ cart_product.price }}</td>
+													<td><a href="{% url 'cart-remove' cart_product.id %}" type="button" title="Remove" class="btn btn-xs remove"><i class="fa fa-times"></i></a></td>
+												</tr>
+											{% endfor %}
+										</tbody>
+									</table>
+									<hr>
+									<p>TOTAL: ${{ cart.get_total_price }}</p>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -93,6 +109,13 @@
 			</div>
 		</nav>
 	</header>
+	{% if messages %}
+		{% for message in messages %}
+			<div class="alert alert-{{ message.tags }} message">
+				{{ message }}
+			</div>
+		{% endfor %}
+  {% endif %}
 	<!-- Header section end -->
 {% block content %}{% endblock %}
 	<!-- Footer section -->
@@ -206,7 +229,6 @@
 	<script src="{% static 'js/owl.carousel.min.js' %}"></script>
 	<script src="{% static 'js/jquery.nicescroll.min.js' %}"></script>
 	<script src="{% static 'js/jquery-ui.min.js' %}"></script>
-	<script src="{% static 'js/product-page-image-gallery.js' %}"></script>
 	<script src="{% static 'js/main.js' %}"></script>
 
 	</body>

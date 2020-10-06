@@ -62,3 +62,9 @@ def product_page_thumbnail_images(product_additional_images: list):
 								</div>'''
         
     return mark_safe(thumbnail_block_html)
+
+
+@register.filter
+def cart_product_count(value, cart_product_id):
+    """returning product count inside minicart"""
+    return value.get(str(cart_product_id)).get('quantity')

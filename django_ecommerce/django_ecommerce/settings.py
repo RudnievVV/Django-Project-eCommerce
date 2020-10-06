@@ -69,6 +69,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 'ecommerce.context_processors.all_categories',
+                'cart.context_processors.cart',
             ],
         },
     },
@@ -130,6 +131,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = 'ecommerce-home'
+
+CART_SESSION_ID = 'cart'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
