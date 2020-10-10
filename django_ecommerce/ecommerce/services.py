@@ -29,12 +29,14 @@ def category_products_max_price_defining(category_slug: str):
         max_category_products_price = ceil(
             sorted(
                 chain(
-                    SimpleProduct.objects.filter(category=category).order_by('price')[:1],
+                    SimpleProduct.objects.filter(category=category).order_by('-price')[:1],
                     ),
                 key=lambda product: product.price, reverse=True)[0].price.amount
                 )
     else:
          max_category_products_price = 0
+
+    print(max_category_products_price)
 
     return str(max_category_products_price)
 
