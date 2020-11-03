@@ -2,6 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+# to make the email unique
+User._meta.get_field('email')._unique = True
+
+
 class UserAddress(models.Model):
     """model for each saved user address"""
     user = models.ForeignKey(User, related_name='user_addresses', on_delete=models.CASCADE)
