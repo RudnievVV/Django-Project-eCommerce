@@ -65,9 +65,9 @@
 							<div class="up-item">
 								<i class="flaticon-profile"></i>
                                 {% if user.is_authenticated %}
-                                    <a href="#">My Account</a>
+                                    <a href="{% url 'my-account' %}">My Account</a> / <a href="{% url 'logout' %}">Logout</a>
                                 {% else %}
-                                    <a href="#">Sign</a> In or <a href="#">Create Account</a>
+                                    <a href="{% url 'login' %}">Sign In</a> / <a href="{% url 'register' %}">Create Account</a>
                                 {% endif %}
 							</div>
 							<div class="up-item dropdown">
@@ -134,7 +134,7 @@
 				</div>
 				<div class="col-lg-3 col-sm-6">
 					<div class="footer-widget about-widget">
-						<h2>Questions</h2>
+						<h2>Links</h2>
 						<ul>
 							<li><a href="">About Us</a></li>
 							<li><a href="">Track Orders</a></li>
@@ -154,7 +154,7 @@
 				</div>
 				<div class="col-lg-3 col-sm-6">
 					<div class="footer-widget about-widget">
-						<h2>Questions</h2>
+						<h2>Latests blog posts</h2>
 						<div class="fw-latest-post-widget">
 							<div class="lp-item">
 								<div class="lp-thumb set-bg" data-setbg="{{ MEDIA_URL }}img/blog-thumbs/1.jpg"></div>
@@ -177,7 +177,7 @@
 				</div>
 				<div class="col-lg-3 col-sm-6">
 					<div class="footer-widget contact-widget">
-						<h2>Questions</h2>
+						<h2>Contacts</h2>
 						<div class="con-info">
 							<span>C.</span>
 							<p>Your Company Ltd </p>

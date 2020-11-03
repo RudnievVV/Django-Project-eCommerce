@@ -39,8 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'djmoney',
+    'widget_tweaks',
+    'crispy_forms',
 
     'ecommerce',
+    'cart',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -130,7 +134,7 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-LOGIN_REDIRECT_URL = 'ecommerce-home'
+LOGIN_REDIRECT_URL = 'my-account'
 
 CART_SESSION_ID = 'cart'
 

@@ -387,6 +387,10 @@ ol {
 	color: #000;
 }
 
+.user-panel .up-item a:hover {
+	color: red;
+}
+
 .user-panel .up-item:first-child {
 	margin-right: 29px;
 }
@@ -968,19 +972,18 @@ ol {
 	display: inline-block;
 }
 
-.product-filter-menu li a {
+.product-filter-menu li a, .container form button, .login-page > div a  {
 	color: #111111;
 	font-size: 12px;
 	font-weight: 700;
 	text-transform: uppercase;
 	background: #ebebeb;
-	display: block;
-	width: 100%;
 	padding: 10px 34px;
+	border: none;
 	border-radius: 31px;
 }
 
-.product-filter-menu li a:hover {
+.product-filter-menu li a:hover, .container form button:hover, .login-page > div a:hover {
     background-color:red;
     color:white;
 }
@@ -2202,6 +2205,17 @@ ol {
 	}
 }
 
+/* Tablet :768px. and higher */
+@media (min-width: 768px){
+	.login-page {
+		display: flex;
+		justify-content: space-around;
+	}
+	.login-page form, .login-page > div {
+		width: 40%;
+	}
+}
+
 /* Tablet :768px. */
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -2467,4 +2481,18 @@ ol {
 
 form.homepage-form-add-to-cart {
 	display: inline-block;
+}
+
+.login-field {
+	margin-bottom: 1%;
+}
+
+.asterisk-field {
+	color: red;
+}
+
+.login-page-title {
+	font-size: 24px;
+    color: black;
+    font-weight: bold;
 }
