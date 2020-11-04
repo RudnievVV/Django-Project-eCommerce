@@ -972,7 +972,7 @@ ol {
 	display: inline-block;
 }
 
-.product-filter-menu li a, .container form button, .login-page > div a  {
+.product-filter-menu li a, .btn-default {
 	color: #111111;
 	font-size: 12px;
 	font-weight: 700;
@@ -983,7 +983,7 @@ ol {
 	border-radius: 31px;
 }
 
-.product-filter-menu li a:hover, .container form button:hover, .login-page > div a:hover {
+.product-filter-menu li a:hover, .btn-default:hover {
     background-color:red;
     color:white;
 }
