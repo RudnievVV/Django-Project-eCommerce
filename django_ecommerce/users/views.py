@@ -6,7 +6,7 @@ from .forms import UserRegisterForm
 
 def register(request):
     """rendering register page with register functionality"""
-    # defining : start
+    # returning content based on request method; if POST, register user, if not, return register html
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
