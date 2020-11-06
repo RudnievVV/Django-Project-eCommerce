@@ -54,9 +54,8 @@ def product_page(request, sku=None):
     # cart adding form defining: end
 
     # product type template defining: start
-    product_template = ""
-    if product.type == "Simple":
-        product_template = settings.SIMPLE_PRODUCT_TEMPLATE
+    if product.type:
+        product_template = settings.PRODUCT_TYPES_WITH_TEMPLATES.get(product.type)
     else:
         raise Http404
     # product type template defining: end
