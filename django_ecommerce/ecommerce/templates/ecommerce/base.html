@@ -84,7 +84,7 @@
 													<td><a href="{{ cart_product.get_absolute_url }}"><img class="img-thumbnail" src="{{ cart_product.main_image.url }}" alt="{{ cart_product.title }}"></a></td>
 													<td>X{{ cart.session.cart|cart_product_count:cart_product.id }}</td>
 													<td>{{ cart_product.price }}</td>
-													<td><a href="{% url 'cart-remove' cart_product.id %}" type="button" title="Remove" class="btn btn-xs remove"><i class="fa fa-times"></i></a></td>
+													<td><a href="{% url 'cart-remove' cart_product.sku %}" type="button" title="Remove" class="btn btn-xs remove"><i class="fa fa-times"></i></a></td>
 												</tr>
 											{% endfor %}
 										</tbody>

@@ -1,18 +1,14 @@
 {% extends 'ecommerce/base.html' %}
-{% load widget_tweaks %}
 {% block content %}
-{% if form.errors %}
-    <p class="alert message">Your username and password didn't match. Please try again.</p>
-{% endif %}
 <div class="container login-page">
     <form method="POST">
         {% csrf_token %}
         <p class="border-top pt-3 login-page-title">Log In</p>
         <fieldset class="form-group">
-            <label for="id_username" class="control-label requiredField">Username<span class="asterisk-field">*</span> </label>
-            {% render_field form.username class+="form-control login-field" %}
-            <label for="id_password" class="control-label requiredField">Password<span class="asterisk-field">*</span> </label>
-            {% render_field form.password class+="form-control login-field" %}
+            <label for="id_username" class="control-label requiredField">Username<span class="asteriskField">*</span></label>
+            <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" class="form-control login-field" required="" id="id_username">
+            <label for="id_password" class="control-label requiredField">Password<span class="asteriskField">*</span></label>
+            <input type="password" name="password" autocomplete="current-password" class="form-control login-field" required="" id="id_password">
         </fieldset>
         <div class="form-group">
             <button class="btn-default" type="submit">Log In</button>

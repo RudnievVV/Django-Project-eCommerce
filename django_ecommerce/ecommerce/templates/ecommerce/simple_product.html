@@ -98,7 +98,7 @@
 							<label for="xxl-size">42</label>
 						</div>
 					</div>
-					<form action="{% url 'cart-add' product.id %}" method="post">
+					<form action="{% url 'cart-add' product.sku %}" method="post">
 						{% csrf_token %}
 						<div class="quantity">
 							<p>Quantity</p>

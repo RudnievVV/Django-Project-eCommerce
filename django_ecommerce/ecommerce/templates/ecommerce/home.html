@@ -102,7 +102,7 @@
 						</div>
 						<a href="{{ product.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{ product.main_image }}" alt="{{ product.title }}"></a>
 						<div class="pi-links">
-							<form class="homepage-form-add-to-cart" action="{% url 'cart-add' product.id %}" method="post">
+							<form class="homepage-form-add-to-cart" action="{% url 'cart-add' product.sku %}" method="post">
 								{% csrf_token %}
 								<div class="display-none">{{ cart_product_form }}</div>
 								<a class="add-card"><i class="flaticon-bag"></i><span><input class="homepage-add-to-cart" type="submit" value="ADD TO CART"></span></a>

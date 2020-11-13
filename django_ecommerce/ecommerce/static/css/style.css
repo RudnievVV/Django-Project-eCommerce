@@ -981,6 +981,7 @@ ol {
 	padding: 10px 34px;
 	border: none;
 	border-radius: 31px;
+	cursor: pointer;
 }
 
 .product-filter-menu li a:hover, .btn-default:hover {
@@ -2487,7 +2488,7 @@ form.homepage-form-add-to-cart {
 	margin-bottom: 1%;
 }
 
-.asterisk-field {
+.asteriskField {
 	color: red;
 }
 
