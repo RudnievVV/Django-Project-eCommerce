@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from .models import Profile
 from .forms import UserRegisterForm
 
 
@@ -12,10 +13,20 @@ def user_register(request):
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
+            # new user saving: start
             new_user = form.save(commit=False)
             username = form.cleaned_data.get('username')
             new_user.username = username.lower() # needed to make username lowercase and then on login page login user with lower case username
             new_user.save()
+            # new user saving: end
+
+            # new profile saving: start
+            user_profile = Profile()
+            user_profile.user = new_user
+            user_profile.original_username = username
+            user_profile.save()
+            # new profile saving: end
+            
             messages.success(request, f'{username}, your account has been created! You are now able to log in!')
             return redirect('login')
     else:

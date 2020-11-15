@@ -6,6 +6,12 @@ from django.contrib.auth.models import User
 User._meta.get_field('email')._unique = True
 
 
+class Profile(models.Model):
+    """model for user additional fields"""
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    original_username = models.CharField(max_length=30, blank=False) # field of original entered username by user during registration, needed to display it in a way user wrote it and not in lowercase
+
+
 class UserAddress(models.Model):
     """model for each saved user address"""
     user = models.ForeignKey(User, related_name='user_addresses', on_delete=models.CASCADE)
