@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserAddress
+from .models import UserAddress, Profile
 
 
 class UserAddressAdmin(admin.ModelAdmin):
@@ -8,3 +8,11 @@ class UserAddressAdmin(admin.ModelAdmin):
 
 
 admin.site.register(UserAddress, UserAddressAdmin)
+
+
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ['user', 'original_username']
+    list_filter = ['user']
+
+
+admin.site.register(Profile, ProfileAdmin)
